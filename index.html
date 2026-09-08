@@ -22,7 +22,7 @@
       .story-image span { border-radius: 0 18px 0 0; transform: rotate(2deg); }
       @media (max-width: 760px) { .story-image { box-shadow: 10px 10px 0 var(--tomato); height: 310px; width: 310px; } }
       .menu-tabs { gap: 10px; border-bottom: 0; flex-wrap: wrap; }
-      .tab { border: 1px solid var(--line); border-radius: 999px; padding: 12px 16px; transition: background .2s ease, color .2s ease, transform .2s ease; }
+      .tab { border: 1px solid var(--line); border-radius: 999px; padding: 12px 16px; transtion: background .2s ease, color .2s ease, transform .2s ease; }
       .tab:hover { color: var(--tomato); transform: translateY(-2px); }
       .tab.active { background: var(--ink); border-color: var(--ink); color: var(--paper); }
       .menu-item { transition: background .2s ease, padding-left .2s ease, padding-right .2s ease; }
@@ -40,7 +40,12 @@
       .hero:after { background: #eadcc9; height: 560px; opacity: .8; width: 560px; }
       .hero-art img { border: 10px solid var(--paper); box-shadow: 5px 6px 0 var(--ink); transform: none; }
       .hero-art .stamp { display: none; }
-      .hero-note { transform: none; }
+      .hero-note { 
+    transform: none; 
+    position: relative !important; 
+    margin-top: 20px !important; 
+    bottom: auto !important; 
+    right: auto !important; }
       .hero h1 { letter-spacing: -.025em; }
       .food-showcase { background: #fffaf4; display: grid; gap: 6vw; grid-template-columns: .8fr 1.8fr; padding: 105px 9vw; }
       .showcase-intro { align-self: center; max-width: 330px; }
@@ -103,7 +108,7 @@
         </div>
         <div class="hero-art reveal reveal-delay">
           <img src="logo.png" alt="Sandwichbar Piccolo logo" />
-          <div class="hero-note"><strong>Sinds 1992 in Turnhout</strong><span>Vers bereid · snel afgehaald</span></div>
+          <div class="hero-note" style="position:><strong>Sinds 1992 in Turnhout</strong><span>Vers bereid · snel afgehaald</span></div>
         </div>
         <div class="hero-bottom"><span>↓ Scroll voor het menu</span><span>Open op weekdagen · 7:30 — 14:00</span></div>
       </section>
