@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Sandwichbar Piccolo in Turnhout. Verse broodjes, burgers en warme snacks sinds 1992." />
+    <title>Sandwichbar Piccolo | Vers & lekker in Turnhout</title>
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700;1,800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .food-card {
+  transition: transform 0.3s ease;
+}
+.food-card:hover {
+  transform: translateY(-4px);
+}
+      .story-image { aspect-ratio: 1; background: #e6d5be; border: 10px solid var(--paper); border-radius: 50%; box-shadow: 18px 18px 0 var(--tomato); height: auto; justify-self: center; max-width: 460px; transform: rotate(-2deg); width: 100%; }
+      .story-image img { border-radius: 50%; object-fit: cover; }
+      .story-image span { border-radius: 0 18px 0 0; transform: rotate(2deg); }
+      @media (max-width: 760px) { .story-image { box-shadow: 10px 10px 0 var(--tomato); height: 310px; width: 310px; } }
+      .menu-tabs { gap: 10px; border-bottom: 0; flex-wrap: wrap; }
+      .tab { border: 1px solid var(--line); border-radius: 999px; padding: 12px 16px; transition: background .2s ease, color .2s ease, transform .2s ease; }
+      .tab:hover { color: var(--tomato); transform: translateY(-2px); }
+      .tab.active { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+      .menu-item { transition: background .2s ease, padding-left .2s ease, padding-right .2s ease; }
+      .menu-item:hover { background: #f8e4bc; }
+      .menu-item strong { color: var(--tomato); }
+      .price-size { color: var(--ink); font-family: 'DM Sans', sans-serif; font-size: 11px; line-height: 1.65; }
+      .button-dark, .nav-order { transition: background .2s ease, transform .2s ease; }
+      .button-dark:hover, .nav-order:hover { background: var(--tomato); transform: translateY(-2px); }
+      .contact-details strong { display: inline-block; margin-bottom: 3px; }
+      @media (max-width: 760px) { .menu-tabs { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 5px; } .tab { padding: 10px 14px; } .menu-item:hover { padding-left: 6px; } }
+      .menu-search { align-items: center; border: 1px solid var(--line); border-radius: 999px; display: flex; gap: 10px; margin: 0 0 24px auto; max-width: 300px; padding: 10px 15px; }
+      .menu-search span { color: var(--tomato); font-size: 17px; }
+      .menu-search input { background: transparent; border: 0; color: var(--ink); font: inherit; min-width: 0; outline: 0; width: 100%; }
+      .menu-search input::placeholder { color: var(--muted); }
+      .hero:after { background: #eadcc9; height: 560px; opacity: .8; width: 560px; }
+      .hero-art img { border: 10px solid var(--paper); box-shadow: 5px 6px 0 var(--ink); transform: none; }
+      .hero-art .stamp { display: none; }
+      .hero-note { transform: none; }
+      .hero h1 { letter-spacing: -.025em; }
+      .food-showcase { background: #fffaf4; display: grid; gap: 6vw; grid-template-columns: .8fr 1.8fr; padding: 105px 9vw; }
+      .showcase-intro { align-self: center; max-width: 330px; }
+      .showcase-intro h2 { font-family: 'Playfair Display',serif; font-size: 53px; letter-spacing: -.04em; line-height: .95; margin: 22px 0; }
+      .showcase-intro h2 em { color: var(--tomato); font-style: italic; }
+      .showcase-intro p:not(.eyebrow) { color: var(--muted); font-size: 14px; line-height: 1.6; margin-bottom: 28px; }
+      .food-grid { display: grid; gap: 18px; grid-template-columns: 1.35fr 1fr 1fr; }
+      .food-card { margin: 0; min-width: 0; }
+      .food-card img { aspect-ratio: 1 / 1.12; display: block; filter: saturate(.95); height: auto; object-fit: cover; width: 100%; }
+      .food-card-large img { aspect-ratio: 1 / 1.22; }
+      .food-card figcaption { display: flex; flex-direction: column; gap: 3px; padding-top: 12px; }
+      .food-card figcaption strong { font-family: 'Playfair Display',serif; font-size: 20px; }
+      .food-card figcaption span { color: var(--muted); font-size: 11px; }
+      @media (max-width: 760px) { .menu-search { margin-left: 0; max-width: none; } }
+      @media (max-width: 760px) { .food-showcase { display: block; padding: 75px 8vw; } .showcase-intro { margin-bottom: 32px; max-width: 320px; } .showcase-intro h2 { font-size: 47px; } .food-grid { gap: 10px; grid-template-columns: 1.25fr 1fr; } .food-card-large { grid-row: span 2; } .food-card img, .food-card-large img { aspect-ratio: 1 / 1.25; } .food-card figcaption strong { font-size: 16px; } }
+      .menu-photo { border-radius: 8px; height: 58px; margin-left: 10px; object-fit: cover; width: 58px; }
+      .menu-item:has(.menu-photo) { grid-template-columns: 32px 58px 1fr auto; }
+      @media (max-width: 760px) { .menu-photo { height: 48px; width: 48px; } .menu-item:has(.menu-photo) { grid-template-columns: 28px 48px 1fr auto; gap: 10px; } }
+      .site-footer { border-top: 5px solid var(--tomato); }
+      .site-footer p:last-of-type { color: var(--paper); }
+      .footer-action { border-bottom: 1px solid var(--yellow); color: var(--yellow); font-size: 12px; font-weight: 700; padding-bottom: 4px; }
+      @media (max-width: 760px) { .site-footer { padding-bottom: 85px; } .footer-action { order: 2; } }
+      .mobile-order { display: none; }
+      @media (max-width: 760px) { body { padding-bottom: 68px; } .mobile-order { align-items: center; background: var(--tomato); bottom: 0; color: #fff; display: flex; justify-content: space-between; left: 0; padding: 13px 8vw; position: fixed; right: 0; z-index: 10; } .mobile-order strong { font-size: 13px; } .mobile-order span { color: var(--yellow); font-size: 11px; } }
+      .proof-bar { align-items: center; background: var(--ink); color: var(--paper); display: grid; grid-template-columns: 1.2fr 1fr 1fr; padding: 20px 9vw; }
+      .proof-bar > * { border-right: 1px solid #ffffff2b; padding: 0 25px; }
+      .proof-bar > *:first-child { padding-left: 0; }
+      .proof-bar > *:last-child { border: 0; padding-right: 0; }
+      .proof-bar strong { color: var(--yellow); display: block; font-family: 'Playfair Display',serif; font-size: 22px; }
+      .proof-bar span { color: #c8beb2; display: block; font-size: 11px; margin-top: 3px; }
+      @media (max-width: 760px) { .proof-bar { gap: 15px; grid-template-columns: 1fr 1fr; padding: 22px 8vw; } .proof-bar > * { padding: 0 12px; } .proof-bar > *:first-child { padding-left: 0; } .proof-bar > *:nth-child(2) { border: 0; padding-right: 0; } .proof-bar > *:last-child { border-top: 1px solid #ffffff2b; grid-column: span 2; padding: 15px 0 0; } }
+    </style>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Sandwichbar Piccolo home">
+        <img src="logo.png" alt="Logo Sandwichbar Piccolo" />
+        <span>Sandwichbar<br /><strong>Piccolo</strong></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu openen">Menu <span>☰</span></button>
+      <nav id="site-nav" class="site-nav" aria-label="Hoofdnavigatie">
+        <a href="#menu">Menu</a>
+        <a href="#verhaal">Ons verhaal</a>
+        <a href="#contact">Contact</a>
+        <a class="nav-order" href="tel:+3214411742">Bel en bestel <span>↗</span></a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy reveal">
+          <p class="eyebrow"><span></span> Turnhout · sinds 1992</p>
+          <h1>Jouw middag,<br /><em>vers belegd.</em></h1>
+          <p class="hero-text">Kom langs voor een royaal broodje, een warme croque of een burger zoals je hem graag eet. Bestel vooraf en haal makkelijk af.</p>
+          <div class="hero-actions">
+            <a class="button button-dark" href="#menu">Bekijk het menu <span>↓</span></a>
+            <a class="text-link" href="https://www.google.com/maps/search/?api=1&query=Apostoliekenstraat+82+2300+Turnhout" target="_blank" rel="noreferrer">Vind ons in Turnhout <span>↗</span></a>
+          </div>
+        </div>
+        <div class="hero-art reveal reveal-delay">
+          <img src="logo.png" alt="Sandwichbar Piccolo logo" />
+          <div class="hero-note"><strong>Sinds 1992 in Turnhout</strong><span>Vers bereid · snel afgehaald</span></div>
+        </div>
+        <div class="hero-bottom"><span>↓ Scroll voor het menu</span><span>Open op weekdagen · 7:30 — 14:00</span></div>
+      </section>
+
+      <section class="proof-bar" aria-label="Praktische informatie">
+        <div><strong>100%</strong><span>aanbevolen op Facebook</span></div>
+        <div><strong>07:30 — 14:00</strong><span>maandag tot vrijdag</span></div>
+        <div><strong>Bel vooraf</strong><span>haal je bestelling vlot af</span></div>
+      </section>
+
+      <section class="food-showcase" aria-label="Verse broodjes van Sandwichbar Piccolo">
+        <div class="showcase-intro"><p class="eyebrow"><span></span> Recht uit de toonbank</p><h2>Vers gemaakt.<br /><em>Graag opgegeten.</em></h2><p>Een paar echte Piccolo-favorieten. Kom langs of bel vooraf, dan staat je bestelling klaar.</p><a class="text-link" href="tel:+3214411742">Bel en bestel <span>↗</span></a></div>
+        <div class="food-grid">
+          <figure class="food-card food-card-large"><img src="picollo-martino.png" alt="Vers belegd broodje van Sandwichbar Piccolo" /><figcaption><strong>Vers uit de toonbank</strong><span>Royaal belegd · vers bereid</span></figcaption></figure>
+          <figure class="food-card"><img src="picollo-gezond.png" alt="Vers broodje met groenten van Sandwichbar Piccolo" /><figcaption><strong>Voor elke goesting</strong><span>Krokant, fris en gevuld</span></figcaption></figure>
+          <figure class="food-card"><img src="picollo-tonijn.png" alt="Huisbereid broodje van Sandwichbar Piccolo" /><figcaption><strong>Huisbereid</strong><span>Elke dag vers klaargemaakt</span></figcaption></figure>
+        </div>
+      </section>
+
+      <section id="menu" class="menu-section section-pad">
+        <div class="section-heading reveal">
+          <p class="eyebrow"><span></span> Met liefde belegd</p>
+          <h2>Het menu</h2>
+          <p>Van klassiekers die je kent tot combinaties die je nog moet ontdekken.</p>
+        </div>
+        <div class="menu-tabs" role="tablist" aria-label="Menucategorieën">
+          <button class="tab active" data-filter="broodjes" role="tab" aria-selected="true">Broodjes</button>
+          <button class="tab" data-filter="warm" role="tab" aria-selected="false">Warm & krokant</button>
+          <button class="tab" data-filter="burgers" role="tab" aria-selected="false">Burgers</button>
+          <button class="tab" data-filter="schotels" role="tab" aria-selected="false">Schotels</button>
+          <button class="tab" data-filter="dranken" role="tab" aria-selected="false">Dranken</button>
+        </div>
+        <label class="menu-search"><span aria-hidden="true">⌕</span><input id="menu-search" type="search" placeholder="Zoek in het menu" aria-label="Zoek in het menu" /></label>
+        <div class="menu-grid">
+          <article class="menu-item" data-category="broodjes"><span class="item-number">01</span><div><h3>Martino</h3><p>Prepare, ui, mosterd, ketchup & augurk</p></div><strong>€ 5,00</strong></article>
+          <article class="menu-item featured" data-category="broodjes"><span class="item-number">02</span><div><h3>Broodje van het huis</h3><p>Huisbereide aardappelsla, sla, tomaat, ei, spek & saus</p></div><strong>€ 7,00</strong><span class="badge">Piccolo favoriet</span></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">03</span><div><h3>Kip de luxe</h3><p>Rucola, ananas, zongedroogde tomaat, kipfilet & Parmezaan</p></div><strong>€ 7,50</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">04</span><div><h3>Italiaans</h3><p>Rucola, Parmaham, mozzarella, pesto & zongedroogde tomaat</p></div><strong>€ 7,00</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">05</span><div><h3>Crispy bacon</h3><p>Sla, tomaat, kaas, spek, bicky-ui & andalouse</p></div><strong>€ 7,00</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">06</span><div><h3>Gerookte zalm</h3><p>Rucola, komkommer, verse ajuin & kruidenkaas</p></div><strong>€ 8,00</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">16</span><div><h3>Kaas</h3><p>Klassiek belegd</p></div><strong>vanaf € 4,00</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">17</span><div><h3>Hesp</h3><p>Klassiek belegd</p></div><strong>vanaf € 4,00</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">18</span><div><h3>Kaas & hesp</h3><p>De vertrouwde klassieker</p></div><strong>vanaf € 5,00</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">19</span><div><h3>Ei-bieslooksla</h3><p>Huisbereide eiersla met bieslook</p></div><strong>vanaf € 5,00</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">20</span><div><h3>Brie</h3><p>Zachte brie op een vers broodje</p></div><strong>vanaf € 5,00</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">21</span><div><h3>Préparé</h3><p>Vers rundsvlees, klassiek gekruid</p></div><strong>vanaf € 5,00</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">22</span><div><h3>Martino special</h3><p>Met barbecuesaus</p></div><strong>vanaf € 5,70</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">23</span><div><h3>Kip-curry</h3><p>Romige kip-curry</p></div><strong>vanaf € 5,00</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">24</span><div><h3>Aardappelsla</h3><p>Huisbereide aardappelsla</p></div><strong>vanaf € 5,00</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">25</span><div><h3>Krabsla</h3><p>Surimi met frisse salade</p></div><strong>vanaf € 5,00</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">26</span><div><h3>Tonijnsla</h3><p>Frisse huisbereide tonijnsla</p></div><strong>vanaf € 5,70</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">27</span><div><h3>Tonijntino</h3><p>Tonijn, pikant, ui, mosterd, ketchup & augurk</p></div><strong>vanaf € 6,00</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">61</span><div><h3>Grijze garnaalsla</h3><p>Huisbereide garnalensla</p></div><strong>vanaf € 6,00</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">62</span><div><h3>Broodje croque</h3><p>Kaas & hesp</p></div><strong>vanaf € 5,50</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">63</span><div><h3>Broodje croque zalm & brie</h3><p>Warme croque met zalm en brie</p></div><strong>vanaf € 6,50</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">64</span><div><h3>Italiaanse croque</h3><p>Met mozzarella, Parmaham, pesto & zongedroogde tomaat</p></div><strong>vanaf € 7,00</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">65</span><div><h3>Broodje gezond</h3><p>Sla, tomaat, ei, komkommer, worteltjes & mayonaise</p></div><strong>vanaf € 6,00</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">66</span><div><h3>Vegetarisch broodje gezond</h3><p>Met maïs, boontjes & rode kool</p></div><strong>vanaf € 6,50</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">67</span><div><h3>Smos kaas & hesp special</h3><p>Met ketchup, mayonaise & ui</p></div><strong>vanaf € 7,00</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">68</span><div><h3>Zuiderse martino</h3><p>Préparé, rucola, zongedroogde tomaat, Parmezaan & pesto</p></div><strong>vanaf € 7,00</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">69</span><div><h3>Smos gerookt spek</h3><p>Sla, tomaat, ei, spek & barbecuesaus</p></div><strong>vanaf € 7,00</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">70</span><div><h3>Boerensmos</h3><p>Ei-bieslooksla, sla, tomaat, spek & mayonaise</p></div><strong>vanaf € 7,00</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">71</span><div><h3>Club Kip</h3><p>Sla, tomaat, ei, kipfilet & mayonaise</p></div><strong>vanaf € 7,00</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">72</span><div><h3>Club special</h3><p>Club Kip met barbecuesaus</p></div><strong>vanaf € 7,00</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">73</span><div><h3>Club Kip Hawaï</h3><p>Club Kip met ananas & cocktailsaus</p></div><strong>vanaf € 7,50</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">74</span><div><h3>Club Kip Aardappelsla</h3><p>Club Kip met huisbereide aardappelsla</p></div><strong>vanaf € 7,50</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">75</span><div><h3>Hanniclub</h3><p>Sla, ei, worteltjes, kipfilet, bicky-ui & hannibalsaus</p></div><strong>vanaf € 8,00</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">76</span><div><h3>Brie & spek & honing</h3><p>Brie, spek & honing</p></div><strong>vanaf € 7,00</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">77</span><div><h3>Spek & eieren</h3><p>Omelet en spek tussen een broodje</p></div><strong>vanaf € 7,00</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">78</span><div><h3>Andalousiër</h3><p>Aardappelsla, sla, kaas, komkommer, augurk, rode ui & andalouse</p></div><strong>vanaf € 7,00</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">79</span><div><h3>Spek de luxe</h3><p>Rucola, ananas, Parmezaan, zongedroogde tomaat, spek & zoete saus</p></div><strong>vanaf € 7,50</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">80</span><div><h3>Smos Hawaï</h3><p>Sla, tomaat, ei, kaas, hesp, ananas & cocktailsaus</p></div><strong>vanaf € 7,50</strong></article>
+          <article class="menu-item" data-category="broodjes"><span class="item-number">81</span><div><h3>Gerookte zalm & kruidenkaas</h3><p>Rucola, komkommer & verse ajuin</p></div><strong>vanaf € 8,00</strong></article>
+          <article class="menu-item" data-category="warm"><span class="item-number">07</span><div><h3>Croque Hawaï</h3><p>Kaas, hesp & ananas</p></div><strong>€ 6,00</strong></article>
+          <article class="menu-item" data-category="warm"><span class="item-number">08</span><div><h3>Kipsaté</h3><p>Huisbereid, warm en kruidig</p></div><strong>€ 6,50</strong></article>
+          <article class="menu-item" data-category="warm"><span class="item-number">09</span><div><h3>Spaghetti</h3><p>Grote portie met groentjes, kippengehakt & kaas</p></div><strong>€ 9,50</strong></article>
+          <article class="menu-item" data-category="warm"><span class="item-number">28</span><div><h3>Boulet</h3><p>Warme snack</p></div><strong>vanaf € 4,00</strong></article>
+          <article class="menu-item" data-category="warm"><span class="item-number">29</span><div><h3>Curryworst XL</h3><p>Warme snack</p></div><strong>vanaf € 4,00</strong></article>
+          <article class="menu-item" data-category="warm"><span class="item-number">30</span><div><h3>Mexicano</h3><p>Warme snack</p></div><strong>vanaf € 4,00</strong></article>
+          <article class="menu-item" data-category="warm"><span class="item-number">31</span><div><h3>Viandel</h3><p>Warme snack</p></div><strong>vanaf € 4,00</strong></article>
+          <article class="menu-item" data-category="warm"><span class="item-number">32</span><div><h3>Bockworst</h3><p>Warme snack</p></div><strong>vanaf € 4,00</strong></article>
+          <article class="menu-item" data-category="warm"><span class="item-number">33</span><div><h3>Vleeskroket</h3><p>2 stuks</p></div><strong>vanaf € 5,00</strong></article>
+          <article class="menu-item" data-category="warm"><span class="item-number">34</span><div><h3>Goulashkroket</h3><p>2 stuks</p></div><strong>vanaf € 5,00</strong></article>
+          <article class="menu-item" data-category="warm"><span class="item-number">35</span><div><h3>Kaaskroket</h3><p>3 stuks</p></div><strong>vanaf € 5,00</strong></article>
+          <article class="menu-item" data-category="warm"><span class="item-number">36</span><div><h3>Boerenboulet</h3><p>Groot broodje met huisbereide aardappelsla</p></div><strong>vanaf € 7,00</strong></article>
+          <article class="menu-item" data-category="warm"><span class="item-number">37</span><div><h3>Visburger</h3><p>Pistolet met sla, tomaat & ei</p></div><strong>vanaf € 6,00</strong></article>
+          <article class="menu-item" data-category="warm"><span class="item-number">38</span><div><h3>Kipburger</h3><p>Pistolet met sla, tomaat & ei</p></div><strong>vanaf € 6,00</strong></article>
+          <article class="menu-item" data-category="warm"><span class="item-number">39</span><div><h3>Bicky Burger</h3><p>Met bickysaus</p></div><strong>vanaf € 6,50</strong></article>
+          <article class="menu-item" data-category="warm"><span class="item-number">40</span><div><h3>Bicky Cheese Bacon</h3><p>Met kaas en spek</p></div><strong>vanaf € 7,50</strong></article>
+          <article class="menu-item" data-category="warm"><span class="item-number">82</span><div><h3>Vis XL</h3><p>Groot broodje met sla, tomaat, ei & tartaar</p></div><strong>vanaf € 8,50</strong></article>
+          <article class="menu-item" data-category="warm"><span class="item-number">83</span><div><h3>Kip XL</h3><p>Groot broodje met sla, tomaat, ei & saus</p></div><strong>vanaf € 8,50</strong></article>
+          <article class="menu-item" data-category="warm"><span class="item-number">84</span><div><h3>Bicky Cheese Burger</h3><p>Bicky burger met kaas</p></div><strong>vanaf € 7,00</strong></article>
+          <article class="menu-item" data-category="warm"><span class="item-number">85</span><div><h3>Bicky Boulet</h3><p>Boulet met bickysaus</p></div><strong>vanaf € 7,00</strong></article>
+          <article class="menu-item" data-category="warm"><span class="item-number">86</span><div><h3>Bicky Mexicano</h3><p>Mexicano met bickysaus</p></div><strong>vanaf € 7,50</strong></article>
+          <article class="menu-item" data-category="burgers"><span class="item-number">10</span><div><h3>Cheeseburger</h3><p>Sla, tomaat, smeltkaas, hamburger & cocktailsaus</p></div><strong>€ 6,00</strong></article>
+          <article class="menu-item" data-category="burgers"><span class="item-number">11</span><div><h3>Baconburger</h3><p>Sla, tomaat, kaas, gerookt spek & barbecuesaus</p></div><strong>€ 6,50</strong></article>
+          <article class="menu-item" data-category="burgers"><span class="item-number">12</span><div><h3>Ultra stoomboot</h3><p>2 hamburgers, ananas, smeltkaas & spek</p></div><strong>€ 8,00</strong></article>
+          <article class="menu-item" data-category="burgers"><span class="item-number">41</span><div><h3>Hamburger</h3><p>Hamburger met 1 saus naar keuze</p></div><strong>vanaf € 4,50</strong></article>
+          <article class="menu-item" data-category="burgers"><span class="item-number">42</span><div><h3>Hamburger special</h3><p>Augurk, mayonaise, ketchup & gebakken ui</p></div><strong>vanaf € 5,70</strong></article>
+          <article class="menu-item" data-category="burgers"><span class="item-number">43</span><div><h3>Hawaïburger</h3><p>Sla, tomaat, ananas & cocktailsaus</p></div><strong>vanaf € 5,50</strong></article>
+          <article class="menu-item" data-category="burgers"><span class="item-number">44</span><div><h3>Tropicalburger</h3><p>Ananas, smeltkaas & cocktailsaus</p></div><strong>vanaf € 5,50</strong></article>
+          <article class="menu-item" data-category="burgers"><span class="item-number">45</span><div><h3>Chipieburger</h3><p>Sla, tomaat, ei & saus naar keuze</p></div><strong>vanaf € 5,50</strong></article>
+          <article class="menu-item" data-category="burgers"><span class="item-number">46</span><div><h3>Monacoburger</h3><p>Sla, tomaat, ei, ui, hesp & smeltkaas</p></div><strong>vanaf € 6,50</strong></article>
+          <article class="menu-item" data-category="burgers"><span class="item-number">47</span><div><h3>Stoomboot</h3><p>Sla, tomaat, ei, augurk, 2 hamburgers & saus</p></div><strong>vanaf € 6,50</strong></article>
+          <article class="menu-item" data-category="dranken"><span class="item-number">13</span><div><h3>Koffie</h3><p>Meeneembeker</p></div><strong>€ 3,00</strong></article>
+          <article class="menu-item" data-category="dranken"><span class="item-number">14</span><div><h3>Frisdrank</h3><p>Cola, Cola Zero, Fanta of Ice Tea</p></div><strong>€ 2,70</strong></article>
+          <article class="menu-item" data-category="dranken"><span class="item-number">15</span><div><h3>Red Bull</h3><p>Blikje</p></div><strong>€ 3,70</strong></article>
+          <article class="menu-item" data-category="dranken"><span class="item-number">48</span><div><h3>Capri-Sun</h3><p>Flesje</p></div><strong>€ 2,70</strong></article>
+          <article class="menu-item" data-category="dranken"><span class="item-number">49</span><div><h3>Water</h3><p>Flesje</p></div><strong>€ 2,70</strong></article>
+          <article class="menu-item" data-category="dranken"><span class="item-number">50</span><div><h3>Chocomelk</h3><p>Flesje</p></div><strong>€ 3,20</strong></article>
+          <article class="menu-item" data-category="dranken"><span class="item-number">51</span><div><h3>Vit-hit</h3><p>Flesje</p></div><strong>€ 3,20</strong></article>
+          <article class="menu-item" data-category="dranken"><span class="item-number">52</span><div><h3>Koffie verkeerd</h3><p>Beker</p></div><strong>€ 3,50</strong></article>
+          <article class="menu-item" data-category="schotels"><span class="item-number">53</span><div><h3>Koude schotel natuur</h3><p>Sla, tomaat, ei, komkommer, worteltjes, augurk & aardappelsla</p></div><strong>vanaf € 7,50</strong></article>
+          <article class="menu-item" data-category="schotels"><span class="item-number">54</span><div><h3>Koude schotel met hesp</h3><p>Met een groot broodje of aardappelsla</p></div><strong>vanaf € 7,50</strong></article>
+          <article class="menu-item" data-category="schotels"><span class="item-number">55</span><div><h3>Koude schotel met americain</h3><p>Met een groot broodje of aardappelsla</p></div><strong>vanaf € 8,50</strong></article>
+          <article class="menu-item" data-category="schotels"><span class="item-number">56</span><div><h3>Koude schotel met kip</h3><p>Met een groot broodje of aardappelsla</p></div><strong>vanaf € 9,50</strong></article>
+          <article class="menu-item" data-category="schotels"><span class="item-number">57</span><div><h3>Koude schotel met tonijn</h3><p>Met een groot broodje of aardappelsla</p></div><strong>vanaf € 9,50</strong></article>
+          <article class="menu-item" data-category="schotels"><span class="item-number">58</span><div><h3>Koude schotel met gerookte zalm</h3><p>Met een groot broodje of aardappelsla</p></div><strong>vanaf € 10,00</strong></article>
+          <article class="menu-item" data-category="schotels"><span class="item-number">59</span><div><h3>Koude schotel met grijze garnaalsla</h3><p>Met een groot broodje of aardappelsla</p></div><strong>vanaf € 10,50</strong></article>
+          <article class="menu-item" data-category="schotels"><span class="item-number">60</span><div><h3>Gezonde schotel van de week</h3><p>Elke week een verse, voedzame verrassing</p></div><strong>Vraag ernaar</strong></article>
+        </div>
+        <p class="menu-footnote">Prijzen zijn voor klein en groot broodje. Vraag naar de prijs voor een smoske, extra beleg of allergeneninformatie. <a href="tel:+3214411742">Bel ons</a></p>
+      </section>
+
+      <section id="verhaal" class="story-section section-pad">
+        <div class="story-image"><img src="logo.png" alt="Sandwichbar Piccolo" /></div>
+        <div class="story-copy reveal"><p class="eyebrow"><span></span> Een kleine zaak met een grote goesting</p><h2>Al meer dan<br /><em>30 jaar</em> op jouw middag.</h2><p>Piccolo is de plek waar Turnhout langskomt voor een broodje zoals het hoort: vers, royaal en met een glimlach erbij. Wij kennen onze klassiekers, maar blijven graag verrassen.</p><a class="text-link" href="https://www.facebook.com/profile.php?id=100050272969953&locale=nl_BE" target="_blank" rel="noreferrer">Volg ons op Facebook <span>↗</span></a></div>
+      </section>
+
+      <section id="contact" class="contact-section section-pad">
+        <div><p class="eyebrow light"><span></span> Tot straks?</p><h2>Kom binnen,<br /><em>je broodje wacht.</em></h2></div>
+        <div class="contact-details">
+          <div>
+            <span>Adres</span>
+            <strong>Apostoliekenstraat 82<br />2300 Turnhout</strong>
+            <a href="https://www.google.com/maps/search/?api=1&query=Apostoliekenstraat+82+2300+Turnhout" target="_blank" rel="noreferrer">Route plannen ↗</a>
+          </div>
+          <div>
+            <span>Openingsuren</span>
+            <strong>Maandag — vrijdag<br />07:30 — 14:00</strong>
+            <small>Weekend & feestdagen gesloten</small>
+          </div>
+          <div>
+            <span>Bestellen</span>
+            <strong>
+              <a href="tel:+3214411742" style="color: inherit; text-decoration: none;">014 41 17 42</a><br />
+              <a href="tel:+32499262296" style="color: inherit; text-decoration: none;">0499 26 22 96</a>
+            </strong>
+            <small>Bel gerust vooraf</small>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer"><a class="brand" href="#top"><img src="logo.png" alt="Logo Sandwichbar Piccolo" /><span>Sandwichbar<br /><strong>Piccolo</strong></span></a><p>Vers & lekker · sinds 1992</p><a class="footer-action" href="tel:+3214411742">Bel en bestel ↗</a><p>© 2026 Sandwichbar Piccolo</p></footer>
+    <a class="mobile-order" href="tel:+3214411742"><strong>Bestel telefonisch</strong><span>014 41 17 42 ↗</span></a>
+  </body>
+</html>

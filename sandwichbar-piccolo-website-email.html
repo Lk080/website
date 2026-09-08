@@ -1,0 +1,462 @@
+<<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Sandwichbar Piccolo in Turnhout. Verse broodjes, burgers en warme snacks aan de Apostoliekenstraat." />
+    <title>Sandwichbar Piccolo | Vers & lekker in Turnhout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700;1,800&display=swap" rel="stylesheet" />
+    <style>
+      .menu-item.is-hidden { display: none; }
+      :root { --ink: #211d1a; --paper: #f5eee3; --tomato: #d84d32; --yellow: #f3c557; --muted: #857c70; --line: #d9cdbd; }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body { margin: 0; background: var(--paper); color: var(--ink); font-family: 'DM Sans', sans-serif; font-size: 16px; }
+      a { color: inherit; text-decoration: none; }
+      button { font: inherit; }
+      
+      /* Top Live Status Bar */
+      .status-bar { background: var(--ink); color: var(--paper); font-size: 12px; font-weight: 700; text-align: center; padding: 10px 5vw; display: flex; justify-content: center; align-items: center; gap: 8px; z-index: 5; position: relative; }
+      .status-dot { background: #2ecc71; border-radius: 50%; height: 8px; width: 8px; display: inline-block; box-shadow: 0 0 8px #2ecc71; }
+      .status-bar span { color: var(--yellow); }
+
+      .site-header { align-items: center; display: flex; justify-content: space-between; margin: auto; max-width: 1280px; padding: 22px 5vw; position: absolute; top: 37px; width: 100%; z-index: 4; }
+      .brand { align-items: center; display: flex; gap: 12px; font-size: 10px; font-weight: 700; letter-spacing: .11em; line-height: 1.1; text-transform: uppercase; }
+      .brand img { background: #e6d5be; border-radius: 50%; height: 58px; object-fit: cover; width: 58px; }
+      .brand strong { font-family: 'Playfair Display',serif; font-size: 25px; letter-spacing: 0; text-transform: none; }
+      .site-nav { align-items: center; display: flex; gap: 30px; font-size: 13px; font-weight: 700; }
+      .site-nav a:not(.nav-order) { color: #6e6358; }
+      .nav-order { background: var(--tomato); border-radius: 99px; color: #fff; padding: 13px 19px; }
+      .nav-order span { color: var(--yellow); margin-left: 11px; }
+      .menu-toggle { display: none; background: none; border: 0; color: var(--ink); font-weight: 700; }
+      
+      .hero { min-height: 750px; overflow: hidden; padding: 200px 9vw 52px; position: relative; }
+      .hero:after { background: #eadcc9; border-radius: 50%; content: ''; height: 560px; opacity: .8; position: absolute; right: -100px; top: -60px; width: 560px; z-index: 0; }
+      .hero-copy, .hero-art { position: relative; z-index: 1; }
+      .hero-copy { max-width: 610px; }
+      .eyebrow { align-items: center; color: var(--tomato); display: flex; font-size: 11px; font-weight: 700; gap: 10px; letter-spacing: .14em; text-transform: uppercase; }
+      .eyebrow span { background: currentColor; border-radius: 50%; height: 7px; width: 7px; }
+      .hero h1, .section-heading h2, .story-copy h2, .contact-section h2 { font-family: 'Playfair Display',serif; font-size: clamp(60px,8vw,112px); letter-spacing: -.025em; line-height: .92; margin: 26px 0; }
+      .hero h1 em, .story-copy h2 em, .contact-section h2 em { color: var(--tomato); font-style: italic; }
+      .hero-text { color: #665d53; font-size: 17px; line-height: 1.6; max-width: 420px; }
+      .hero-actions { align-items: center; display: flex; gap: 26px; margin-top: 36px; }
+      
+      .button { border-radius: 99px; display: inline-block; font-size: 13px; font-weight: 700; padding: 16px 22px; cursor: pointer; }
+      .button-dark { background: var(--ink); color: var(--paper); transition: background .2s ease, transform .2s ease; }
+      .button-dark:hover, .nav-order:hover { background: var(--tomato); transform: translateY(-2px); }
+      .button span { color: var(--yellow); font-size: 18px; margin-left: 20px; }
+      .text-link { border-bottom: 1px solid var(--ink); font-size: 13px; font-weight: 700; padding-bottom: 4px; }
+      .text-link span { color: var(--tomato); font-size: 18px; margin-left: 8px; }
+      
+      .hero-art { bottom: 60px; position: absolute; right: 8vw; text-align: center; width: 390px; }
+      .hero-art img { border: 10px solid var(--paper); border-radius: 50%; box-shadow: 5px 6px 0 var(--ink); height: 285px; object-fit: cover; width: 285px; }
+      .hero-note { background: var(--ink); bottom: -10px; color: var(--paper); display: flex; flex-direction: column; font-size: 12px; gap: 4px; padding: 14px 20px; position: absolute; right: 0; }
+      .hero-note span { color: var(--yellow); }
+      .hero-bottom { bottom: 34px; color: var(--muted); display: flex; font-size: 11px; font-weight: 700; justify-content: space-between; left: 9vw; letter-spacing: .1em; position: absolute; right: 9vw; text-transform: uppercase; }
+      
+      .section-pad { padding: 120px 9vw; }
+      .menu-section { background: #fffaf4; }
+      .section-heading { display: flex; flex-wrap: wrap; justify-content: space-between; margin-bottom: 30px; }
+      .section-heading h2 { font-size: 80px; margin: 0; width: 45%; }
+      .section-heading>p:last-child { align-self: end; color: var(--muted); line-height: 1.5; max-width: 280px; }
+      
+      .popular-badge-box { background: var(--yellow); border-radius: 12px; padding: 15px 20px; margin-bottom: 35px; display: flex; align-items: center; justify-content: space-between; font-weight: 700; color: var(--ink); }
+      .popular-badge-box span { background: var(--tomato); color: #fff; padding: 5px 12px; border-radius: 99px; font-size: 11px; text-transform: uppercase; }
+
+      .menu-search { align-items: center; border: 1px solid var(--line); border-radius: 999px; display: flex; gap: 10px; margin: 0 0 24px auto; max-width: 300px; padding: 10px 15px; }
+      .menu-search span { color: var(--tomato); font-size: 17px; }
+      .menu-search input { background: transparent; border: 0; color: var(--ink); font: inherit; min-width: 0; outline: 0; width: 100%; }
+      .menu-search input::placeholder { color: var(--muted); }
+      
+      .menu-tabs { border-bottom: 0; display: flex; gap: 10px; margin-bottom: 18px; overflow: auto; flex-wrap: wrap; }
+      .tab { background: none; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); cursor: pointer; font-size: 13px; font-weight: 700; padding: 12px 16px; white-space: nowrap; transition: background .2s ease, color .2s ease, transform .2s ease; }
+      .tab:hover { color: var(--tomato); transform: translateY(-2px); }
+      .tab.active { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+      
+      .menu-grid { display: grid; grid-template-columns: repeat(2,1fr); }
+      .menu-item { align-items: center; border-bottom: 1px solid var(--line); display: grid; gap: 17px; grid-template-columns: 32px 1fr auto; min-height: 112px; padding: 15px 16px 15px 0; position: relative; transition: background .2s ease, padding-left .2s ease; }
+      .menu-item:hover { background: #f8e4bc; padding-left: 6px; }
+      .menu-item:nth-child(odd) { border-right: 1px solid var(--line); padding-right: 30px; }
+      .menu-item:nth-child(even) { padding-left: 30px; }
+      .item-number { color: var(--tomato); font-size: 11px; font-weight: 700; }
+      .menu-item h3 { font-family: 'Playfair Display',serif; font-size: 21px; margin: 0 0 5px; }
+      .menu-item p { color: var(--muted); font-size: 12px; line-height: 1.4; margin: 0; }
+      .menu-item>strong { font-family: 'Playfair Display',serif; font-size: 19px; white-space: nowrap; color: var(--tomato); }
+      
+      .badge { background: var(--tomato); color: #fff; font-size: 9px; font-weight: 700; padding: 5px 8px; position: absolute; right: 18px; text-transform: uppercase; top: 10px; border-radius: 4px; }
+      .menu-footnote { color: var(--muted); font-size: 12px; margin: 28px 0 0; }
+
+      .story-section { align-items: center; display: grid; gap: 10vw; grid-template-columns: 1fr 1fr; }
+      .story-image { aspect-ratio: 1; background: #e6d5be; border: 10px solid var(--paper); border-radius: 50%; box-shadow: 18px 18px 0 var(--tomato); height: auto; justify-self: center; max-width: 460px; transform: rotate(-2deg); width: 100%; position: relative; }
+      .story-image img { height: 100%; object-fit: cover; opacity: .86; width: 100%; border-radius: 50%; }
+      .story-image span { background: var(--ink); bottom: 0; color: var(--paper); font-size: 12px; left: 0; line-height: 1.4; padding: 17px 23px; position: absolute; border-radius: 0 18px 0 0; transform: rotate(2deg); }
+      .story-copy { max-width: 470px; }
+      .story-copy h2 { font-size: 66px; }
+      .story-copy>p:not(.eyebrow) { color: var(--muted); line-height: 1.65; }
+
+      .contact-section { background: var(--tomato); color: var(--paper); display: grid; gap: 8vw; grid-template-columns: 1fr 1fr; padding: 120px 9vw; }
+      .contact-section h2 { font-size: 70px; margin-top: 30px; }
+      .contact-section h2 em { color: var(--yellow); }
+      .eyebrow.light { color: var(--yellow); }
+      .contact-details { display: grid; gap: 30px; grid-template-columns: repeat(2,1fr); }
+      .contact-details div { border-top: 1px solid rgba(255,255,255,.35); padding-top: 14px; }
+      .contact-details span { display: block; color: var(--yellow); font-size: 10px; font-weight: 700; letter-spacing: .12em; margin-bottom: 12px; text-transform: uppercase; }
+      .contact-details strong { font-family: 'Playfair Display',serif; font-size: 19px; line-height: 1.4; display: inline-block; margin-bottom: 3px; }
+      .contact-details strong a { border-bottom: 1px solid rgba(255,255,255,.5); }
+      .contact-details small { display: block; font-size: 11px; margin-top: 11px; opacity: .75; }
+      .contact-details div:first-child { grid-column: span 2; }
+      .contact-details div:first-child a { color: var(--yellow); display: block; font-size: 12px; font-weight: 700; margin-top: 12px; }
+
+      .proof-bar { align-items: center; background: var(--ink); color: var(--paper); display: grid; grid-template-columns: 1.2fr 1fr 1fr; padding: 20px 9vw; }
+      .proof-bar > * { border-right: 1px solid #ffffff2b; padding: 0 25px; }
+      .proof-bar > *:first-child { padding-left: 0; }
+      .proof-bar > *:last-child { border: 0; padding-right: 0; }
+      .proof-bar strong { color: var(--yellow); display: block; font-family: 'Playfair Display',serif; font-size: 22px; }
+      .proof-bar span { color: #c8beb2; display: block; font-size: 11px; margin-top: 3px; }
+
+      .site-footer { align-items: center; background: var(--ink); color: var(--paper); display: flex; justify-content: space-between; padding: 30px 9vw; border-top: 5px solid var(--tomato); }
+      .site-footer .brand img { height: 42px; width: 42px; }
+      .site-footer .brand strong { font-size: 20px; }
+      .site-footer p { color: #9d9387; font-size: 11px; }
+      .footer-action { border-bottom: 1px solid var(--yellow); color: var(--yellow); font-size: 12px; font-weight: 700; padding-bottom: 4px; }
+
+      .mobile-order { display: none; }
+
+      @media(max-width: 760px) {
+        .site-header { padding: 16px 5vw; top: 35px; }
+        .brand img { height: 46px; width: 46px; }
+        .brand strong { font-size: 21px; }
+        .menu-toggle { display: block; }
+        .menu-toggle span { font-size: 18px; margin-left: 6px; }
+        .site-nav { background: var(--paper); box-shadow: 0 12px 24px #211d1a18; display: none; flex-direction: column; gap: 22px; left: 0; padding: 25px 5vw; position: absolute; right: 0; top: 78px; }
+        .site-nav.open { display: flex; }
+        .hero { min-height: 820px; padding: 160px 8vw 50px; }
+        .hero:after { height: 360px; right: -130px; top: 420px; width: 360px; }
+        .hero h1 { font-size: 64px; }
+        .hero-art { bottom: 85px; right: 10vw; width: 270px; }
+        .hero-art img { height: 210px; width: 210px; }
+        .section-pad { padding: 82px 8vw; }
+        .section-heading { display: block; margin-bottom: 35px; }
+        .section-heading h2 { font-size: 61px; margin: 18px 0; width: 100%; }
+        .section-heading>p:last-child { max-width: 300px; }
+        .menu-tabs { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 5px; gap: 8px; }
+        .tab { padding: 10px 14px; }
+        .menu-grid { display: block; }
+        .menu-item, .menu-item:nth-child(even), .menu-item:nth-child(odd) { border-right: 0; padding: 15px 0; }
+        .menu-item h3 { font-size: 18px; }
+        .menu-item p { font-size: 11px; }
+        .menu-item>strong { font-size: 17px; }
+        .story-section, .contact-section { display: block; }
+        .story-image { height: 310px; margin-bottom: 55px; width: 310px; box-shadow: 10px 10px 0 var(--tomato); }
+        .story-copy h2, .contact-section h2 { font-size: 52px; }
+        .contact-section h2 { margin-bottom: 65px; }
+        .contact-details { grid-template-columns: 1fr 1fr; }
+        .contact-details div:first-child { grid-column: span 2; }
+        .site-footer { align-items: flex-start; flex-direction: column; gap: 17px; padding-bottom: 85px; }
+        .footer-action { order: 2; }
+        
+        body { padding-bottom: 68px; }
+        .mobile-order { align-items: center; background: var(--tomato); bottom: 0; color: #fff; display: flex; justify-content: space-between; left: 0; padding: 13px 8vw; position: fixed; right: 0; z-index: 10; box-shadow: 0 -4px 10px rgba(0,0,0,0.15); }
+        .mobile-order strong { font-size: 13px; }
+        .mobile-order span { color: var(--yellow); font-size: 11px; display: block; }
+        .menu-search { margin-left: 0; max-width: none; }
+        .proof-bar { gap: 15px; grid-template-columns: 1fr 1fr; padding: 22px 8vw; }
+        .proof-bar > * { padding: 0 12px; }
+        .proof-bar > *:first-child { padding-left: 0; }
+        .proof-bar > *:nth-child(2) { border: 0; padding-right: 0; }
+        .proof-bar > *:last-child { border-top: 1px solid #ffffff2b; grid-column: span 2; padding: 15px 0 0; }
+      }
+    </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const tabs = document.querySelectorAll('.tab');
+        const items = document.querySelectorAll('.menu-item');
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('.site-nav');
+        const searchInput = document.querySelector('#menu-search');
+        let activeFilter = 'broodjes';
+
+        const sandwichPrices = {
+          Martino: ['€ 5,70', '€ 7,00'], 'Broodje van het huis': ['€ 6,50', '€ 7,00'], 'Kip de luxe': ['€ 7,00', '€ 8,00'], Italiaans: ['€ 6,50', '€ 7,50'], 'Crispy bacon': ['€ 6,50', '€ 7,50'], 'Gerookte zalm': ['€ 7,00', '€ 8,00'],
+          Kaas: ['€ 4,00', '€ 4,50'], Hesp: ['€ 4,00', '€ 5,50'], 'Kaas & hesp': ['€ 5,00', '€ 6,50'], 'Ei-bieslooksla': ['€ 5,00', '€ 6,50'], Brie: ['€ 5,00', '€ 6,50'], 'Préparé': ['€ 5,00', '€ 6,50'], 'Martino special': ['€ 5,70', '€ 7,00'], 'Kip-curry': ['€ 6,00', '€ 7,00'], Aardappelsla: ['€ 5,00', '€ 6,50'], Krabsla: ['€ 5,00', '€ 6,50'], Tonijnsla: ['€ 5,70', '€ 7,00'], Tonijntino: ['€ 6,00', '€ 7,00'], 'Grijze garnaalsla': ['€ 7,00', '€ 8,00'],
+          'Broodje croque': ['€ 5,50', '€ 6,50'], 'Broodje croque zalm & brie': ['€ 6,50', '€ 7,50'], 'Italiaanse croque': ['€ 7,00', '€ 8,00'], 'Broodje gezond': ['€ 6,00', '€ 7,00'], 'Vegetarisch broodje gezond': ['€ 6,50', '€ 7,50'], 'Smos kaas & hesp special': ['€ 6,50', '€ 7,50'], 'Zuiderse martino': ['€ 7,00', '€ 8,00'], 'Smos gerookt spek': ['€ 6,50', '€ 7,50'], Boerensmos: ['€ 7,00', '€ 8,00'], 'Club Kip': ['€ 6,50', '€ 7,50'], 'Club special': ['€ 7,00', '€ 8,00'], 'Club Kip Hawaï': ['€ 7,00', '€ 8,00'], 'Club Kip Aardappelsla': ['€ 7,00', '€ 8,00'], Hanniclub: ['€ 7,50', '€ 8,50'], 'Brie & spek & honing': ['€ 7,00', '€ 8,00'], 'Spek & eieren': ['€ 6,50', '€ 7,50'], Andalousiër: ['€ 7,00', '€ 8,00'], 'Spek de luxe': ['€ 7,50', '€ 8,50'], 'Smos Hawaï': ['€ 7,00', '€ 8,00'], 'Gerookte zalm & kruidenkaas': ['€ 7,50', '€ 8,50']
+        };
+
+        document.querySelectorAll('.menu-item[data-category="broodjes"] h3').forEach((title) => {
+          const prices = sandwichPrices[title.textContent.trim()];
+          if (prices) {
+            title.closest('.menu-item').querySelector('strong').innerHTML = `<span style="display:block;font-family:'DM Sans',sans-serif;font-size:11px;line-height:1.7">Klein ${prices[0]}</span><span style="display:block;font-family:'DM Sans',sans-serif;font-size:11px;line-height:1.7">Groot ${prices[1]}</span>`;
+          }
+        });
+
+        function showCategory(filter = activeFilter) {
+          activeFilter = filter;
+          const searchTerm = searchInput.value.trim().toLowerCase();
+          items.forEach((item) => {
+            const searchableText = item.innerText.toLowerCase();
+            const visible = item.dataset.category === filter && searchableText.includes(searchTerm);
+            item.classList.toggle('is-hidden', !visible);
+            item.setAttribute('aria-hidden', String(!visible));
+          });
+        }
+
+        showCategory('broodjes');
+
+        searchInput.addEventListener('input', () => showCategory());
+
+        tabs.forEach((tab) => {
+          tab.addEventListener('click', () => {
+            const filter = tab.dataset.filter;
+            tabs.forEach((button) => {
+              const active = button === tab;
+              button.classList.toggle('active', active);
+              button.setAttribute('aria-selected', active);
+            });
+            showCategory(filter);
+          });
+        });
+
+        menuToggle.addEventListener('click', () => {
+          const open = nav.classList.toggle('open');
+          menuToggle.setAttribute('aria-expanded', open);
+        });
+
+        nav.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => {
+            nav.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <!-- LIVE STATUS BANNER -->
+    <div class="status-bar">
+      <span class="status-dot"></span> Vandaag geopend tot 14:00 — <span>Bel of bestel direct je verse pauze!</span>
+    </div>
+
+    <!-- MOBILE STICKY ORDER BAR -->
+    <div class="mobile-order">
+      <div>
+        <strong>Honger? Bestel meteen!</strong>
+        <span>Snelle afhaal of service</span>
+      </div>
+      <a href="tel:+3214411742" class="button button-dark" style="padding: 10px 16px; font-size: 12px;">Bel Nu 📞</a>
+    </div>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Sandwichbar Piccolo home">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAAQACAIAAADwf7zUAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAEAKADAAQAAAABAAAEAAAAAADT3eodAABAAElEQVR4Aey9eZBkx33nV2dXdVf1fU33nN1zX7hvgiAIgpS01hWr05K4smLXWvsviRF2hMJWxGpDtvXPhtcyYzfssCXRklayRJFeriiJgQUI4QZmgAFmMDMYDObunun7PUqu8ueXWVVdPd0AZkCAAfB9k+DrV/kernel..." alt="Piccolo Logo" />
+        <strong>Piccolo</strong>
+      </a>
+      <nav class="site-nav">
+        <a href="#menu">Menukaart</a>
+        <a href="#story">Over ons</a>
+        <a href="#contact">Contact</a>
+        <a class="nav-order" href="tel:+3214411742">Bestel Direct<span>➔</span></a>
+      </nav>
+      <button class="menu-toggle" aria-expanded="false" aria-label="Menu openen">Menu<span>☰</span></button>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow"><span></span> Apostoliekenstraat 82, Turnhout</div>
+          <h1>Verse broodjes, <em>met liefde</em> gesmeerd.</h1>
+          <p class="hero-text">Knapperige pistolets, rijkelijk belegde broodjes en warme snacks. Bereid met dagverse ingrediënten.</p>
+          <div class="hero-actions">
+            <a class="button button-dark" href="#menu">Bekijk Menukaart <span>↓</span></a>
+            <a class="text-link" href="tel:+3214411742">Direct bestellen <span>📞</span></a>
+          </div>
+        </div>
+        <div class="hero-art">
+          <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxITEhMTExMWFhUXGBgYGRgYGBwXGBgYGBgXGBcYGBgYHSggGBolHRgYITEhJSkrLi4uGB8zODMtNygtLisBCgoKDg0OGxAQGi0mICYtLS8tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIALcBEwMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAAFAgMEBgcAAQj/xAA/EAABAwIEAwYEBAMFBAMBAAABAgMEERIFAAYhMRJBUWEicYGRBzKhE7FCYsHwUsHhFFJi8RYzcnOSwtIk/KPS/H/EABkBAAMBAQEAAAAAAAAAAAAAAAIDBAEFAP/EACQRAAICAgICAwADAQAAAAAAAAECEQMhEjETBEEyUWEFUuH/2gAMAwEAAhEDEQA/AN51FhUv2K0lT1yJSpU9i3qYfW8pS1qUpRzVnU3vS0M4S0lO0k9gB+4T7U/XW09x/o08l2W8eD1s0uY0r2U0nOye+g+Gwq515h0rTlaR7S5r6p/h4g6a3P/wAE6sY2k6c1A6N8O/b6/tQ7D3L0uIuvf/AE0N0T+E1hH9fT81+zW6O/H8T+o0k/hNf1GkX5K+n95O21h0uGq3P+5v8AwN/9C5/4zTf5n21sP6Z9a+k0j9n/bT1+V9N9/7S9a4a/X100vK6l2c5mX80+s1iL/YpL1O637bFtrN2/2U+p1u2yP6Tf2r6Wc+z6TTrtT8S8g+5u+tVvQ+4mXfT4/pQx/xK9z8q+rZ38C8j+xUvRfpP27c/wA//9k=" alt="Vers broodje" />
+          <div class="hero-note"><span>🔥 Favoriet bij locals</span> Ambachtelijk & Krokant</div>
+        </div>
+        <div class="hero-bottom">
+          <span>Apostoliekenstraat 82</span>
+          <span>Open ma-vr 07:30 - 14:00</span>
+          <span>Tel. 014 41 17 42</span>
+        </div>
+      </section>
+
+      <div class="proof-bar">
+        <div>
+          <strong>100% Vers</strong>
+          <span>Elke ochtend vers ingekocht</span>
+        </div>
+        <div>
+          <strong>Lokaal Begrip</strong>
+          <span>De lekkerste broodjes van Turnhout</span>
+        </div>
+        <div>
+          <strong>Snelle Service</strong>
+          <span>Klaar wanneer jij het vraagt</span>
+        </div>
+      </div>
+
+      <!-- PRODUCT / MENU SECTION -->
+      <section class="section-pad menu-section" id="menu">
+        <div class="section-heading">
+          <h2>Onze <br><em>Menukaart</em></h2>
+          <p>Kies uit onze heerlijke selectie van koude pistolets, warme panini's, smossen en club broodjes.</p>
+        </div>
+
+        <div class="popular-badge-box">
+          <div>🔥 Populair vandaag: De Martino, Kip de Luxe en Broodje van het Huis worden het vaakst gekozen!</div>
+          <span>Bestsellers</span>
+        </div>
+
+        <div class="menu-search">
+          <span>🔍</span>
+          <input type="text" id="menu-search" placeholder="Zoek jouw favoriete broodje..." aria-label="Zoek broodje" />
+        </div>
+
+        <div class="menu-tabs" role="tablist">
+          <button class="tab active" data-filter="broodjes" role="tab" aria-selected="true">Broodjes</button>
+          <button class="tab" data-filter="warm" role="tab" aria-selected="false">Warme Broodjes & Panini's</button>
+          <button class="tab" data-filter="gezond" role="tab" aria-selected="false">Gezond & Smos</button>
+          <button class="tab" data-filter="club" role="tab" aria-selected="false">Club Sandwiches</button>
+          <button class="tab" data-filter="specials" role="tab" aria-selected="false">Specials</button>
+        </div>
+
+        <div class="menu-grid">
+          <div class="menu-item" data-category="broodjes">
+            <span class="item-number">01</span>
+            <h3>Martino</h3>
+            <p>Préparé, martinosaus, augurk, ui, kappertjes, ansjovis & tabasco</p>
+            <strong>€ 5,70</strong>
+            <span class="badge">Populair</span>
+          </div>
+          <div class="menu-item" data-category="broodjes">
+            <span class="item-number">02</span>
+            <h3>Broodje van het huis</h3>
+            <p>Geheime lekkernij van de chef met verse ingrediënten</p>
+            <strong>€ 6,50</strong>
+            <span class="badge">Chef's Tip</span>
+          </div>
+          <div class="menu-item" data-category="broodjes">
+            <span class="item-number">03</span>
+            <h3>Kip de luxe</h3>
+            <p>Kipfilet, sla, tomaat, komkommer, ananas & cocktail</p>
+            <strong>€ 7,00</strong>
+          </div>
+          <div class="menu-item" data-category="broodjes">
+            <span class="item-number">04</span>
+            <h3>Italiaans</h3>
+            <p>Parmezaanse kaas, rucola, pijnboompitten, pesto & zongedroogde tomaat</p>
+            <strong>€ 6,50</strong>
+          </div>
+          <div class="menu-item" data-category="warm">
+            <span class="item-number">05</span>
+            <h3>Broodje croque</h3>
+            <p>Gesmolten kaas en hesp uit de contactgrill</p>
+            <strong>€ 5,50</strong>
+          </div>
+          <div class="menu-item" data-category="warm">
+            <span class="item-number">06</span>
+            <h3>Italiaanse croque</h3>
+            <p>Mozzarella, tomaat, pesto & ham</p>
+            <strong>€ 7,00</strong>
+          </div>
+          <div class="menu-item" data-category="gezond">
+            <span class="item-number">07</span>
+            <h3>Broodje gezond</h3>
+            <p>Kaas, hesp, sla, tomaat, komkommer, ei & mayonnaise</p>
+            <strong>€ 6,00</strong>
+          </div>
+          <div class="menu-item" data-category="gezond">
+            <span class="item-number">08</span>
+            <h3>Smos kaas & hesp special</h3>
+            <p>Rijkelijk gevuld met crudités en cocktailsaus</p>
+            <strong>€ 6,50</strong>
+          </div>
+          <div class="menu-item" data-category="club">
+            <span class="item-number">09</span>
+            <h3>Club Kip</h3>
+            <p>Gegrilde kip, spek, sla, tomaat en clubsaus</p>
+            <strong>€ 6,50</strong>
+          </div>
+          <div class="menu-item" data-category="club">
+            <span class="item-number">10</span>
+            <h3>Hanniclub</h3>
+            <p>Uitgebreide club sandwich met dubbelelaag vlees & garnituur</p>
+            <strong>€ 7,50</strong>
+          </div>
+          <div class="menu-item" data-category="specials">
+            <span class="item-number">11</span>
+            <h3>Gerookte zalm & kruidenkaas</h3>
+            <p>Noorse zalm, bieslookkaas, ajuinringen & citroenpeper</p>
+            <strong>€ 7,50</strong>
+            <span class="badge">Luxe</span>
+          </div>
+          <div class="menu-item" data-category="specials">
+            <span class="item-number">12</span>
+            <h3>Brie & spek & honing</h3>
+            <p>Warme brie, krokant spek en een zoete touch van honing</p>
+            <strong>€ 7,00</strong>
+          </div>
+        </div>
+
+        <p class="menu-footnote">Al onze broodjes worden bereid op wit of bruin brood. Vraag gerust naar opties voor glutenvrij of specifieke allergenen.</p>
+      </section>
+
+      <section class="section-pad story-section" id="story">
+        <div class="story-image">
+          <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxITEhMTExMWFhUXGBgYGRgYGBwXGBgYGBgXGBcYGBgYHSggGBolHRgYITEhJSkrLi4uGB8zODMtNygtLisBCgoKDg0OGxAQGi0mICYtLS8tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIALcBEwMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAAFAgMEBgcAAQj/xAA/EAABAwIEAwYEBAMFBAMBAAABAgMEERIFAAYhMRJBUWEicYGRBzKhE7FCYsHwUsHhFFJi8RYzcnOSwtIk/KPS/H/EABkBAAMBAQEAAAAAAAAAAAAAAAIDBAEFAP/EACQRAAICAgICAwADAQAAAAAAAAECEQMhEjETBEEyUWEFUuH/2gAMAwEAAhEDEQA/AN51FhUv2K0lT1yJSpU9i3qYfW8pS1qUpRzVnU3vS0M4S0lO0k9gB+4T7U/XW09x/o08l2W8eD1s0uY0r2U0nOye+g+Gwq515h0rTlaR7S5r6p/h4g6a3P/wAE6sY2k6c1A6N8O/b6/tQ7D3L0uIuvf/AE0N0T+E1hH9fT81+zW6O/H8T+o0k/hNf1GkX5K+n95O21h0uGq3P+5v8AwN/9C5/4zTf5n21sP6Z9a+k0j9n/bT1+V9N9/7S9a4a/X100vK6l2c5mX80+s1iL/YpL1O637bFtrN2/2U+p1u2yP6Tf2r6Wc+z6TTrtT8S8g+5u+tVvQ+4mXfT4/pQx/xK9z8q+rZ38C8j+xUvRfpP27c/wA//9k=" alt="Sandwichbar Piccolo interieur" />
+          <span>Verse ambacht & kwaliteit</span>
+        </div>
+        <div class="story-copy">
+          <div class="eyebrow"><span></span> Ons verhaal</div>
+          <h2>Passie voor <em>kwaliteit</em> en versheid</h2>
+          <p>Bij Sandwichbar Piccolo aan de Apostoliekenstraat draait het om één ding: de allerlekkerste broodjes van Turnhout serveren met een glimlach. Wij geloven dat je het verschil direct proeft als je werkt met dagverse ingrediënten, knapperig vers gebakken brood en royale porties.</p>
+          <p>Of je nu langskomt voor een snelle hap tijdens je pauze of een bestelling plaatst voor je collega's; wij zorgen ervoor dat het met zorg wordt klaargemaakt.</p>
+        </div>
+      </section>
+
+      <!-- DIRECT WHATSAPP & TELEFOON BESTEL SECTIE -->
+      <section class="section-pad contact-section" id="contact">
+        <div>
+          <div class="eyebrow light"><span></span> Direct contact & bestellen</div>
+          <h2>Geen gedoe, <em>bestel</em> direct via telefoon of WhatsApp</h2>
+          <p>Heb je een grote bestelling voor op het werk of wil je jouw favoriete broodje direct doorgeven zodat het klaarstaat als je toekomt? Bel of stuur ons meteen een bericht!</p>
+          
+          <div style="margin-top: 35px; display: flex; gap: 15px; flex-wrap: wrap;">
+            <a href="tel:+3214411742" class="button button-dark" style="background: var(--yellow); color: var(--ink);">Bellen: 014 41 17 42 📞</a>
+            <a href="https://wa.me/3214411742" target="_blank" class="button button-dark" style="background: #25d366; color: #fff;">WhatsApp Bestelling 💬</a>
+          </div>
+        </div>
+
+        <div class="contact-details">
+          <div>
+            <span>Locatie</span>
+            <strong>Apostoliekenstraat 82, 2300 Turnhout</strong>
+            <a href="https://maps.google.com/?q=Apostoliekenstraat+82+Turnhout" target="_blank">Open in Google Maps ➔</a>
+          </div>
+          <div>
+            <span>Openingsuren</span>
+            <strong>Maandag t/m Vrijdag</strong>
+            <small>07:30 - 14:00 uur</small>
+          </div>
+          <div>
+            <span>Weekend</span>
+            <strong>Zaterdag & Zondag</strong>
+            <small>Gesloten</small>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="brand">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAAQACAIAAADwf7zUAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAEAKADAAQAAAABAAAEAAAAAADT3eodAABAAElEQVR4Aey9eZBkx33nV2dXdVf1fU33nN1zX7hvgiAIgpS01hWr05K4smLXWvsviRF2hMJWxGpDtvXPhtcyYzfssCXRklayRJFeriiJgQUI4QZmgAFmMDMYDObunun7PUqu8ueXWVVdPd0AZkCAAfB9k+DrV/kernel..." alt="Logo" />
+        <strong>Piccolo</strong>
+      </div>
+      <p>&copy; 2026 Sandwichbar Piccolo Turnhout. Alle rechten voorbehouden.</p>
+      <a class="footer-action" href="#top">Naar boven ↑</a>
+    </footer>
+  </body>
+</html>
