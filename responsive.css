@@ -1,0 +1,121 @@
+/* Tablet and phone layouts; loaded after the existing desktop styles. */
+@media (max-width: 1100px) {
+  .site-header { position: relative; padding: 16px 5vw; }
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 36px;
+    min-height: 0;
+    padding: 64px 5vw 32px;
+  }
+  .hero-copy, .hero-art { min-width: 0; }
+  .hero h1 { font-size: clamp(48px, 6.8vw, 76px); }
+  .hero-art { position: relative; bottom: auto; right: auto; width: 100%; }
+  .hero-art img { width: min(100%, 285px); height: auto; aspect-ratio: 1; }
+  .hero-actions { flex-wrap: wrap; gap: 20px; }
+  .hero-bottom {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    grid-column: 1 / -1;
+    gap: 20px;
+    flex-wrap: wrap;
+    z-index: 1;
+  }
+  .section-pad { padding: 72px 5vw; }
+  .food-showcase { grid-template-columns: minmax(0, 1fr); padding: 72px 5vw; gap: 32px; }
+  .showcase-intro { max-width: 560px; }
+  .food-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .food-card img, .food-card-large img { aspect-ratio: 1 / 1.12; }
+  .proof-bar { padding: 24px 5vw; }
+  .proof-bar > * { min-width: 0; padding: 0 16px; }
+  .section-heading { display: block; margin-bottom: 32px; }
+  .section-heading h2 { width: auto; font-size: 64px; margin: 20px 0; }
+  .section-heading > p:last-child { max-width: 540px; }
+  .menu-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; }
+  .menu-item,
+  .menu-item:nth-child(odd),
+  .menu-item:nth-child(even) {
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: 8px 12px;
+    border-right: 0;
+    padding: 20px 12px;
+  }
+  .menu-item > div { min-width: 0; }
+  .menu-item h3 { font-size: 21px; overflow-wrap: anywhere; }
+  .menu-item p { font-size: 14px; line-height: 1.5; }
+  .menu-item > strong { grid-column: 2; white-space: normal; }
+  .menu-item .price-size { font-size: 13px; line-height: 1.8; }
+  .menu-item.featured { padding-top: 44px; }
+  .menu-footnote { font-size: 14px; line-height: 1.6; }
+  .menu-tabs { gap: 10px; }
+  .tab { flex-shrink: 0; min-height: 44px; }
+  .menu-search { min-height: 48px; }
+  .menu-search input { font-size: 16px; }
+  .story-section { gap: 5vw; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .story-image { width: 100%; max-width: 360px; height: auto; }
+  .story-copy h2, .contact-section h2 { font-size: clamp(38px, 5vw, 56px); }
+  .contact-section { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .contact-details { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+  .contact-details div:first-child { grid-column: auto; }
+  .contact-details strong { font-size: 18px; }
+  .contact-details small { font-size: 13px; line-height: 1.5; }
+  .site-footer { flex-wrap: wrap; gap: 24px; padding: 32px 5vw; }
+}
+
+@media (max-width: 760px) {
+  body { padding-bottom: 0; }
+  .site-header { gap: 12px; }
+  .menu-toggle { min-height: 44px; padding: 8px; flex-shrink: 0; }
+  .site-nav { top: 100%; max-height: 70vh; overflow-y: auto; }
+  .site-nav a { display: flex; align-items: center; min-height: 44px; }
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 32px; padding: 36px 6vw 28px; }
+  .hero h1 { font-size: clamp(44px, 10vw, 68px); }
+  .hero-text { font-size: 16px; max-width: 540px; }
+  .hero-art { max-width: 300px; justify-self: center; }
+  .hero-art img { width: min(75%, 230px); }
+  .hero-note { font-size: 12px; }
+  .hero:after { width: 340px; height: 340px; top: auto; bottom: 20px; right: -130px; }
+  .hero-actions { align-items: flex-start; gap: 18px; margin-top: 24px; }
+  .hero-bottom { font-size: 10px; }
+  .section-pad, .food-showcase { padding: 56px 6vw; }
+  .showcase-intro { margin-bottom: 28px; max-width: none; }
+  .showcase-intro h2 { font-size: clamp(38px, 9vw, 48px); }
+  .food-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 14px; }
+  .food-card-large { grid-row: auto; grid-column: 1 / -1; }
+  .food-card-large img { aspect-ratio: 4 / 3; }
+  .food-card figcaption strong { font-size: 18px; }
+  .food-card figcaption span { font-size: 12px; }
+  .proof-bar { padding: 24px 6vw; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .proof-bar strong { font-size: clamp(18px, 4.5vw, 22px); }
+  .proof-bar span { font-size: 12px; line-height: 1.5; }
+  .section-heading h2 { font-size: 52px; }
+  .menu-grid { display: block; }
+  .menu-tabs { flex-wrap: nowrap; overflow-x: auto; padding: 4px 0 10px; }
+  .menu-search { max-width: none; }
+  .menu-item:hover { padding-left: 12px; }
+  .story-section { display: block; }
+  .story-image { width: min(100%, 310px); height: auto; margin: 0 auto 40px; }
+  .story-copy { max-width: none; }
+  .story-copy h2, .contact-section h2 { font-size: clamp(36px, 8.5vw, 52px); }
+  .contact-section h2 { margin-bottom: 32px; }
+  .contact-details { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 16px; }
+  .contact-details div:first-child { grid-column: 1 / -1; }
+  .contact-details strong { font-size: 17px; }
+  .site-footer { padding: 32px 6vw calc(112px + env(safe-area-inset-bottom, 0px)); }
+  .mobile-order {
+    gap: 8px;
+    flex-wrap: wrap;
+    min-height: 60px;
+    padding: 16px 6vw calc(16px + env(safe-area-inset-bottom, 0px));
+  }
+  .mobile-order span { font-size: 12px; }
+}
+
+@media (max-width: 380px) {
+  .contact-details { grid-template-columns: minmax(0, 1fr); }
+  .brand { gap: 8px; }
+  .brand strong { font-size: 20px; }
+}
