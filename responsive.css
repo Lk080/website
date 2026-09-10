@@ -1,4 +1,17 @@
 /* Tablet and phone layouts; loaded after the existing desktop styles. */
+:root { color-scheme: only light; }
+/* Reserve a separate row for closing a dialog, clear of its text. */
+#sandwich-dialog > .sandwich-close,
+#cart-dialog > .sandwich-close {
+  position: static;
+  display: block;
+  margin: 0 0 12px auto;
+  background: #fffaf4;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  z-index: 2;
+  flex-shrink: 0;
+}
 @media (max-width: 1100px) {
   .site-header { position: relative; padding: 16px 5vw; }
   .hero {
@@ -118,4 +131,65 @@
   .contact-details { grid-template-columns: minmax(0, 1fr); }
   .brand { gap: 8px; }
   .brand strong { font-size: 20px; }
+}
+
+/* Keep the layout readable on wide screens and at intermediate widths. */
+body { max-width: 1800px; margin-inline: auto; }
+.site-header { max-width: 1800px; }
+.menu-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.menu-item > div { min-width: 0; }
+.menu-item h3, .sandwich-options label, .sandwich-price { overflow-wrap: anywhere; }
+.sandwich-customize { min-height: 44px; padding-block: 10px; }
+.menu-search:focus-within { outline: 2px solid var(--tomato); outline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--tomato); outline-offset: 3px; }
+.sandwich-field select, .sandwich-field textarea, #cart-dialog input { font-size: 16px; }
+#sandwich-dialog, #cart-dialog { overscroll-behavior: contain; scroll-padding-block: 24px; }
+.sandwich-actions .button, #cart-dialog .button { min-height: 44px; }
+.sandwich-options label > span { min-width: 0; }
+.cart-open { right: max(20px, calc((100vw - 1800px) / 2 + 20px)); }
+.site-footer { padding-bottom: 100px; }
+
+@media (min-width: 1101px) {
+  .hero { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); align-items: center; gap: 36px; min-height: 700px; }
+  .hero-copy, .hero-art { min-width: 0; }
+  .hero h1 { font-size: clamp(72px, 6.2vw, 104px); }
+  .hero-art { position: relative; bottom: auto; right: auto; width: 100%; }
+  .hero-art img { width: min(100%, 285px); height: auto; aspect-ratio: 1; }
+  .hero-actions { flex-wrap: wrap; }
+  .menu-item, .menu-item:nth-child(odd), .menu-item:nth-child(even) { grid-template-columns: 24px minmax(0, 1fr); gap: 8px 16px; padding: 22px; }
+  .menu-item > strong { grid-column: 2; white-space: normal; }
+  .menu-item.featured { padding-top: 42px; }
+  .menu-item .price-size { font-size: 13px; }
+  .menu-item p { font-size: 14px; line-height: 1.5; }
+  .story-copy h2, .contact-section h2 { font-size: clamp(46px, 4vw, 66px); }
+  .contact-section { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 5vw; }
+}
+
+@media (max-width: 760px) {
+  .cart-open { right: max(12px, env(safe-area-inset-right, 0px)); bottom: calc(80px + env(safe-area-inset-bottom, 0px)); }
+  .site-footer { padding-bottom: calc(168px + env(safe-area-inset-bottom, 0px)); }
+  .menu-tabs { scroll-padding-inline: 8px; }
+}
+
+@media (max-width: 480px) {
+  .sandwich-options { grid-template-columns: minmax(0, 1fr); }
+  #sandwich-dialog, #cart-dialog { max-height: calc(100dvh - 24px); }
+  #cart-send, #cart-continue { width: 100%; }
+}
+
+@media (max-height: 500px) {
+  #sandwich-dialog, #cart-dialog { max-height: calc(100dvh - 16px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* One compact action bar keeps phone content unobstructed. */
+@media (max-width: 760px) {
+  .mobile-order { right: auto; width: 52%; height: calc(64px + env(safe-area-inset-bottom, 0px)); min-height: 64px; padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px)); }
+  .mobile-order span { display: none; }
+  .cart-open { right: 0; bottom: 0; width: 48%; height: calc(64px + env(safe-area-inset-bottom, 0px)); padding: 12px 8px calc(12px + env(safe-area-inset-bottom, 0px)); border-radius: 0; font-size: 12px; box-shadow: none; }
+  .site-footer { padding-bottom: calc(112px + env(safe-area-inset-bottom, 0px)); }
 }
