@@ -21,6 +21,7 @@ showCategory('broodjes');
 
 const dialog = document.querySelector('#sandwich-dialog');
 const form = document.querySelector('#sandwich-form');
+const defaultNotesPlaceholder = form.elements.notes.placeholder;
 const sizes = document.querySelector('#sandwich-sizes');
 const extras = document.querySelector('#sandwich-extras');
 const summary = document.querySelector('#sandwich-summary');
@@ -32,6 +33,20 @@ let selectedName = '';
 let isPlatter = false;
 let singleVariant = false;
 let opener;
+let selectedQuantity = 1;
+let isSandwich = false;
+const quantityMinus = document.querySelector('#quantity-minus');
+const quantityPlus = document.querySelector('#quantity-plus');
+
+function changeQuantity(value) {
+  selectedQuantity = Math.max(1, Math.min(99, value));
+  document.querySelector('#sandwich-quantity').value = String(selectedQuantity);
+  quantityMinus.disabled = selectedQuantity === 1;
+  quantityPlus.disabled = selectedQuantity === 99;
+  updatePrice();
+}
+quantityMinus.addEventListener('click', () => changeQuantity(selectedQuantity - 1));
+quantityPlus.addEventListener('click', () => changeQuantity(selectedQuantity + 1));
 
 const euro = (cents) => new Intl.NumberFormat('nl-BE', { style: 'currency', currency: 'EUR' }).format(cents / 100);
 
@@ -49,6 +64,11 @@ function sauceDescription(sauce) {
   return `${sauce.name} · ${sauce.portion} (+${euro(sauce.cents)} per stuk)`;
 }
 
+function selectedBread() {
+  const size = form.querySelector('[name="size"]:checked');
+  return isSandwich && size?.value.startsWith('Groot') ? form.elements.bread.value : '';
+}
+
 function priceDescription() {
   const size = form.querySelector('[name="size"]:checked');
   if (!size) return 'Kies een formaat om de prijs te zien.';
@@ -60,12 +80,13 @@ function priceDescription() {
   const baseCents = size.dataset.priceCents;
   const total = baseCents === ''
     ? 'Totaal: prijs op aanvraag'
-    : `${hasNotes ? 'Subtotaal' : 'Totaal'}: ${euro(Number(baseCents) + extraCents + sauceCents)}`;
+    : `${hasNotes ? 'Subtotaal' : 'Totaal'} (${selectedQuantity} ×): ${euro((Number(baseCents) + extraCents + sauceCents) * selectedQuantity)}`;
   return `${variant}: ${size.dataset.price} · Extra’s: ${euro(extraCents + sauceCents)} · ${total}`
     + (hasNotes ? ' · Eventuele prijswijziging voor je wensen te bevestigen.' : '');
 }
 
 function updatePrice() {
+  document.querySelector('#bread-field').hidden = !selectedBread();
   document.querySelector('#sauce-portion-field').hidden = !form.elements.sauce.value;
   document.querySelector('#sandwich-price').textContent = priceDescription();
 }
@@ -108,8 +129,15 @@ items.forEach((item) => {
     opener = button;
     selectedName = name;
     isPlatter = platter;
+    isSandwich = sandwich;
     form.reset();
+    changeQuantity(1);
     const drink = item.dataset.category === 'dranken';
+    const coffee = drink && name.toLowerCase().includes('koffie');
+    form.elements.notes.closest('label').hidden = drink && !coffee;
+    form.elements.notes.placeholder = coffee
+      ? 'Bijvoorbeeld: zonder melk, zonder suiker'
+      : defaultNotesPlaceholder;
     extras.querySelectorAll('fieldset, label[for="sandwich-sauce"], .sandwich-help').forEach((element) => { element.hidden = drink; });
     sizes.querySelector('legend').textContent = sandwich ? 'Hoe groot is je goesting?' : 'Kies je variant';
     document.querySelector('#sandwich-title').textContent = name;
@@ -179,6 +207,7 @@ form.addEventListener('submit', (event) => {
   summary.replaceChildren();
   [
     isPlatter ? selectedName : `${selectedName} · ${size.value}`,
+    selectedBread(),
     additions.length ? additions.join(', ') : 'Geen extra’s',
     form.elements.notes.value.trim() ? `Opmerkingen: ${form.elements.notes.value.trim()}` : '',
     'Voeg deze keuze toe aan je winkelmandje en bestel daarna via WhatsApp.'
@@ -225,6 +254,7 @@ function cartTotal() {
 function lineDetails(line) {
   return [
     line.variant,
+    line.bread,
     ...line.extras.map((extra) => `${extra.name} (+${euro(extra.cents)} per stuk)`),
     line.sauce ? sauceDescription(line.sauce) : '',
     line.notes ? `Opmerkingen: ${line.notes}` : '',
@@ -287,15 +317,16 @@ call.addEventListener('click', () => {
   cart.push({
     name: selectedName,
     variant: size.value,
+    bread: selectedBread(),
     baseCents: size.dataset.priceCents === '' ? null : Number(size.dataset.priceCents),
     extras: [...form.querySelectorAll('[name="extra"]:checked')].map((input) => ({ name: input.value, cents: Number(input.dataset.priceCents) })),
     sauce: selectedSauce(),
     notes: form.elements.notes.value.trim(),
-    quantity: 1
+    quantity: selectedQuantity
   });
   renderCart();
   dialog.close();
-  document.querySelector('#cart-status').textContent = `${selectedName} toegevoegd aan je winkelmandje.`;
+  document.querySelector('#cart-status').textContent = `${selectedQuantity} × ${selectedName} toegevoegd aan je winkelmandje.`;
 });
 
 cartOpen.addEventListener('click', () => {

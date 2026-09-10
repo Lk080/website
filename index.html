@@ -290,11 +290,23 @@
       <h2 id="sandwich-title"></h2>
       <p id="sandwich-description"></p>
       <form id="sandwich-form">
+        <div class="cart-controls" role="group" aria-label="Aantal artikelen">
+          <span>Aantal</span>
+          <button id="quantity-minus" type="button" aria-label="Eén minder" disabled>−</button>
+          <output id="sandwich-quantity" aria-live="polite">1</output>
+          <button id="quantity-plus" type="button" aria-label="Eén meer">+</button>
+        </div>
         <fieldset id="sandwich-sizes">
           <legend>Hoe groot is je goesting?</legend>
           <div class="sandwich-options" id="size-options"></div>
         </fieldset>
         <div id="sandwich-extras" hidden>
+          <label class="sandwich-field" id="bread-field" for="sandwich-bread" hidden>Welk brood wil je?
+            <select id="sandwich-bread" name="bread">
+              <option value="Wit brood">Wit brood</option>
+              <option value="Bruin brood">Bruin brood</option>
+            </select>
+          </label>
           <fieldset>
             <legend>Extra groenten</legend>
             <div class="sandwich-options">
