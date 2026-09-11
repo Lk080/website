@@ -15,6 +15,8 @@ with sync_playwright() as p:
  for w,h in SIZES:
   page.set_viewport_size({'width':w,'height':h})
   page.goto(SITE_URL)
+  page.evaluate('localStorage.clear()')
+  page.reload()
   page.emulate_media(reduced_motion='reduce')
   page.evaluate('window.open=(url)=>{window.testWhatsApp=url;return null}')
   for category in ['broodjes','warm','burgers','schotels','dranken']:

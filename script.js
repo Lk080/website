@@ -1,4 +1,36 @@
 document.addEventListener('DOMContentLoaded', () => {
+const euro = (cents) => new Intl.NumberFormat('nl-BE', { style: 'currency', currency: 'EUR' }).format(cents / 100);
+const grid = document.querySelector('.menu-grid');
+PRODUCTS.forEach((product) => {
+  const item = document.createElement('article');
+  item.className = `menu-item${product.featured ? ' featured' : ''}`;
+  item.dataset.category = product.category;
+  item.dataset.productId = product.id;
+  const number = document.createElement('span');
+  number.className = 'item-number';
+  number.textContent = product.id;
+  const copy = document.createElement('div');
+  const title = document.createElement('h3');
+  title.textContent = product.name;
+  const description = document.createElement('p');
+  description.textContent = product.description;
+  copy.append(title, description);
+  const prices = document.createElement('strong');
+  product.variants.filter(v => !v.name.endsWith('smoske')).forEach((variant, index) => {
+    if (index) prices.append(document.createElement('br'));
+    const price = document.createElement('span');
+    price.className = 'price-size';
+    price.textContent = `${variant.name === 'Standaard' || variant.name === 'Koude schotel' ? '' : variant.name + ' '}${variant.cents === null ? 'Prijs op aanvraag' : euro(variant.cents)}`;
+    prices.append(price);
+  });
+  item.append(number, copy, prices);
+  if (product.featured) {
+    const badge = document.createElement('span'); badge.className = 'badge';
+    badge.textContent = 'Piccolo favoriet'; item.append(badge);
+  }
+  grid.append(item);
+});
+
 const tabs = document.querySelectorAll('.tab');
 const items = document.querySelectorAll('.menu-item');
 const menuToggle = document.querySelector('.menu-toggle');
@@ -9,12 +41,22 @@ let activeFilter = 'broodjes';
 function showCategory(filter = activeFilter) {
   activeFilter = filter;
   const searchTerm = searchInput.value.trim().toLowerCase();
+  let count = 0;
   items.forEach((item) => {
-    const searchableText = item.innerText.toLowerCase();
-    const visible = item.dataset.category === filter && searchableText.includes(searchTerm);
+    const searchableText = item.textContent.toLowerCase();
+    const visible = searchTerm ? searchableText.includes(searchTerm) : item.dataset.category === filter;
+    if (visible) count++;
     item.classList.toggle('is-hidden', !visible);
     item.setAttribute('aria-hidden', String(!visible));
   });
+  tabs.forEach(tab => {
+    const active = !searchTerm && tab.dataset.filter === filter;
+    tab.classList.toggle('active', active);
+    tab.setAttribute('aria-pressed', String(active));
+  });
+  const results = document.querySelector('#menu-results');
+  results.hidden = !searchTerm;
+  results.textContent = count ? `${count} resultaten in het volledige menu.` : 'Geen gerechten gevonden. Probeer een andere naam of ingrediënt.';
 }
 
 showCategory('broodjes');
@@ -33,6 +75,8 @@ let selectedName = '';
 let isPlatter = false;
 let singleVariant = false;
 let opener;
+let selectedProduct;
+function selectedSide() { return selectedProduct?.sideChoice ? form.elements.side.value : ''; }
 let selectedQuantity = 1;
 let isSandwich = false;
 const quantityMinus = document.querySelector('#quantity-minus');
@@ -48,7 +92,7 @@ function changeQuantity(value) {
 quantityMinus.addEventListener('click', () => changeQuantity(selectedQuantity - 1));
 quantityPlus.addEventListener('click', () => changeQuantity(selectedQuantity + 1));
 
-const euro = (cents) => new Intl.NumberFormat('nl-BE', { style: 'currency', currency: 'EUR' }).format(cents / 100);
+
 
 function selectedSauce() {
   if (!form.elements.sauce.value) return null;
@@ -116,21 +160,32 @@ function focusStep() {
 items.forEach((item) => {
   const platter = item.dataset.category === 'schotels';
   const sandwich = item.dataset.category === 'broodjes';
-  const name = item.querySelector('h3').textContent;
+  const product = PRODUCTS.find(product => product.id === item.dataset.productId);
+  const name = product.name;
+  const quickAdd = product.category === 'dranken' && product.variants.length === 1 && !name.toLowerCase().includes('koffie');
   const button = document.createElement('button');
   button.type = 'button';
   button.className = 'sandwich-customize';
-  button.textContent = platter ? 'Kies extra’s bij je schotel →' : sandwich ? 'Stel je broodje samen →' : 'Kies en voeg toe →';
-  button.setAttribute('aria-label', `${name} samenstellen`);
-  button.setAttribute('aria-haspopup', 'dialog');
+  button.textContent = quickAdd ? 'Toevoegen +' : platter ? 'Kies extra’s bij je schotel →' : sandwich ? 'Stel je broodje samen →' : 'Kies en voeg toe →';
+  button.setAttribute('aria-label', quickAdd ? `${name} toevoegen` : `${name} samenstellen`);
+  if (!quickAdd) button.setAttribute('aria-haspopup', 'dialog');
   item.querySelector('div').append(button);
   item.classList.add('sandwich-clickable');
   item.addEventListener('click', () => {
+    if (quickAdd) {
+      cart.push({ productId: product.id, name, variant: product.variants[0].name, baseCents: product.variants[0].cents, bread: '', side: '', extras: [], sauce: null, notes: '', quantity: 1 });
+      renderCart();
+      document.querySelector('#cart-status').textContent = `1 × ${name} toegevoegd aan je winkelmandje.`;
+      return;
+    }
+    selectedProduct = product;
     opener = button;
     selectedName = name;
     isPlatter = platter;
     isSandwich = sandwich;
     form.reset();
+    document.querySelector('#side-field').hidden = !product.sideChoice;
+    form.elements.side.required = product.sideChoice;
     changeQuantity(1);
     const drink = item.dataset.category === 'dranken';
     const coffee = drink && name.toLowerCase().includes('koffie');
@@ -144,19 +199,9 @@ items.forEach((item) => {
     document.querySelector('#sandwich-description').textContent = item.querySelector('p').textContent;
     const options = document.querySelector('#size-options');
     options.replaceChildren();
-    const prices = [...item.querySelectorAll('.price-size')].map((price) => price.textContent);
-    const sandwichVariants = ['Groot broodje', 'Klein broodje'];
-    if (sandwich && item.dataset.smoskePriceCents) {
-      const smoskeCents = Number(item.dataset.smoskePriceCents);
-      prices.push(`Groot smoske ${euro(smoskeCents)}`, `Klein smoske ${euro(smoskeCents - 50)}`);
-      sandwichVariants.push('Groot smoske', 'Klein smoske');
-    }
-    const variants = isPlatter ? ['Koude schotel'] : sandwich ? sandwichVariants
-      : prices.length ? prices.map((price) => price.split('€')[0].trim()) : ['Standaard'];
-    singleVariant = variants.length === 1 && item.dataset.category !== 'burgers';
-    variants.forEach((size) => {
-      const price = isPlatter || (!sandwich && !prices.length) ? item.querySelector('strong').textContent
-        : prices.find((text) => text.toLowerCase().startsWith(size.toLowerCase()));
+    singleVariant = product.variants.length === 1 && product.category !== 'burgers';
+    product.variants.forEach((variant) => {
+      const size = variant.name;
       const label = document.createElement('label');
       const radio = document.createElement('input');
       radio.type = 'radio';
@@ -164,9 +209,8 @@ items.forEach((item) => {
       radio.value = size;
       radio.required = true;
       radio.checked = singleVariant;
-      const amount = price?.match(/€\s*(\d+),(\d{2})/);
-      radio.dataset.price = amount ? amount[0] : 'Prijs op aanvraag';
-      radio.dataset.priceCents = amount ? String(Number(amount[1]) * 100 + Number(amount[2])) : '';
+      radio.dataset.price = variant.cents === null ? 'Prijs op aanvraag' : euro(variant.cents);
+      radio.dataset.priceCents = variant.cents === null ? '' : String(variant.cents);
       const text = document.createElement('span');
       text.textContent = size;
       if (item.dataset.category === 'burgers') {
@@ -208,6 +252,7 @@ form.addEventListener('submit', (event) => {
   [
     isPlatter ? selectedName : `${selectedName} · ${size.value}`,
     selectedBread(),
+    selectedSide(),
     additions.length ? additions.join(', ') : 'Geen extra’s',
     form.elements.notes.value.trim() ? `Opmerkingen: ${form.elements.notes.value.trim()}` : '',
     'Voeg deze keuze toe aan je winkelmandje en bestel daarna via WhatsApp.'
@@ -235,7 +280,28 @@ dialog.addEventListener('close', () => {
 
 searchInput.addEventListener('input', () => showCategory());
 
-const cart = [];
+const CART_KEY = 'piccolo-cart-v1';
+const CART_TTL = 24 * 60 * 60 * 1000;
+function restoreCart() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(CART_KEY));
+    if (!saved || !Number.isFinite(saved.updatedAt) || Date.now() - saved.updatedAt > CART_TTL || !Array.isArray(saved.items)) return [];
+    return saved.items.filter(line => {
+      const product = PRODUCTS.find(product => product.id === line.productId);
+      const variant = product?.variants.find(variant => variant.name === line.variant);
+      return variant && line.baseCents === variant.cents && line.name === product.name
+        && Number.isInteger(line.quantity) && line.quantity >= 1 && line.quantity <= 99
+        && ['bread', 'side', 'notes'].every(key => typeof line[key] === 'string')
+        && Array.isArray(line.extras) && line.extras.every(extra => typeof extra.name === 'string' && Number.isInteger(extra.cents) && extra.cents >= 0)
+        && (line.sauce === null || (typeof line.sauce?.name === 'string' && typeof line.sauce.portion === 'string' && Number.isInteger(line.sauce.cents) && line.sauce.cents >= 0));
+    });
+  } catch { return []; }
+}
+const cart = restoreCart();
+function saveCart() {
+  try { localStorage.setItem(CART_KEY, JSON.stringify({ updatedAt: Date.now(), items: cart })); }
+  catch { /* Ordering remains available when browser storage is disabled. */ }
+}
 const cartDialog = document.querySelector('#cart-dialog');
 const cartOpen = document.querySelector('#cart-open');
 const cartItems = document.querySelector('#cart-items');
@@ -255,6 +321,7 @@ function lineDetails(line) {
   return [
     line.variant,
     line.bread,
+    line.side ? `Bijgerecht: ${line.side}` : '',
     ...line.extras.map((extra) => `${extra.name} (+${euro(extra.cents)} per stuk)`),
     line.sauce ? sauceDescription(line.sauce) : '',
     line.notes ? `Opmerkingen: ${line.notes}` : '',
@@ -263,6 +330,7 @@ function lineDetails(line) {
 }
 
 function renderCart() {
+  saveCart();
   cartOpen.textContent = `Winkelmandje (${cart.reduce((sum, line) => sum + line.quantity, 0)})`;
   cartItems.replaceChildren();
   checkout.hidden = cart.length === 0;
@@ -315,6 +383,8 @@ call.addEventListener('click', () => {
   const size = form.querySelector('[name="size"]:checked');
   if (!size) return;
   cart.push({
+    productId: selectedProduct.id,
+    side: selectedSide(),
     name: selectedName,
     variant: size.value,
     bread: selectedBread(),
@@ -364,10 +434,11 @@ renderCart();
 tabs.forEach((tab) => {
   tab.addEventListener('click', () => {
     const filter = tab.dataset.filter;
+    searchInput.value = '';
     tabs.forEach((button) => {
       const active = button === tab;
       button.classList.toggle('active', active);
-      button.setAttribute('aria-selected', active);
+      button.setAttribute('aria-pressed', active);
     });
     showCategory(filter);
   });
