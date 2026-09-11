@@ -46,9 +46,25 @@ const path = require('node:path');
   const message=new URL(await page.evaluate(()=>window.testUrl)).searchParams.get('text');
   assert.match(message,/Bijgerecht: Aardappelsla/); assert.match(message,/18,20/);
   await page.locator('#cart-continue').click();
-  for(const category of ['broodjes','warm','burgers','schotels','dranken']) {
+  for(const category of ['broodjes','croques','warm','burgers','schotels','dranken']) {
    await page.locator(`[data-filter="${category}"]`).click();
    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+   const layout = await page.evaluate(() => {
+    const cards = [...document.querySelectorAll('.menu-item:not(.is-hidden)')];
+    const first = cards[0]?.getBoundingClientRect();
+    const second = cards[1]?.getBoundingClientRect();
+    return { paired: first && second && Math.abs(first.top-second.top)<2 && second.left>first.left,
+      groupsValid: [...document.querySelectorAll('.menu-group-title:not([hidden])')].every(heading => {
+       let item=heading.nextElementSibling;
+       return item && !item.classList.contains('is-hidden') && item.dataset.group===heading.dataset.group;
+      }) };
+   });
+   assert(layout.groupsValid, `Grouping at ${width}, ${category}`);
+   if (category==='croques') assert.equal(Boolean(layout.paired),width>1100);
+   if (category==='croques' && [390,1280].includes(width)) {
+    await page.locator('#menu').scrollIntoViewIfNeeded();
+    await page.screenshot({path:`/private/tmp/piccolo-menu-${width}.png`});
+   }
   }
   await page.evaluate(()=>scrollTo(0,0));
   if([390,1280].includes(width)) await page.screenshot({path:`/private/tmp/piccolo-updated-${width}.png`});

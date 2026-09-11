@@ -51,7 +51,7 @@ const PRODUCTS = [
   {
     "id": "03",
     "name": "Kip de luxe",
-    "description": "Rucola, ananas, zongedroogde tomaat, kipfilet, Parmezaan, bicky-ui & zoete saus",
+    "description": "Rucola, ananas, zongedroogde tomaat, kipfilet, parmezaanse kaas, bicky-ui & zoete saus",
     "category": "broodjes",
     "featured": false,
     "sideChoice": false,
@@ -71,7 +71,7 @@ const PRODUCTS = [
   {
     "id": "04",
     "name": "Italiaans broodje",
-    "description": "Rucola, Parmaham, mozzarella, zongedroogde tomaat, zwarte peper & pesto",
+    "description": "Rucola, parmaham, mozzarella, zongedroogde tomaat, zwarte peper & pesto",
     "category": "broodjes",
     "featured": false,
     "sideChoice": false,
@@ -543,7 +543,7 @@ const PRODUCTS = [
   {
     "id": "68",
     "name": "Zuiderse martino",
-    "description": "Préparé, rucola, zongedroogde tomaat, Parmezaan & pesto",
+    "description": "Préparé, rucola, zongedroogde tomaat, parmezaanse kaas & pesto",
     "category": "broodjes",
     "featured": false,
     "sideChoice": false,
@@ -623,7 +623,7 @@ const PRODUCTS = [
   {
     "id": "79",
     "name": "Spek de luxe",
-    "description": "Rucola, ananas, Parmezaan, zongedroogde tomaat, gerookt spek, bicky-ui & zoete saus",
+    "description": "Rucola, ananas, parmezaanse kaas, zongedroogde tomaat, gerookt spek, bicky-ui & zoete saus",
     "category": "broodjes",
     "featured": false,
     "sideChoice": false,
@@ -956,7 +956,7 @@ const PRODUCTS = [
   {
     "id": "64",
     "name": "Italiaanse croque",
-    "description": "Met mozzarella, Parmaham, pesto & zongedroogde tomaat",
+    "description": "Met mozzarella, parmaham, pesto & zongedroogde tomaat",
     "category": "croques",
     "featured": false,
     "sideChoice": false,
