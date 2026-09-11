@@ -1,8 +1,34 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+if (location.protocol === 'http:' || location.protocol === 'https:') {
+  try {
+    const response = await fetch('/api/weekly', { cache: 'no-store', signal: AbortSignal.timeout(3000) });
+    if (response.ok) {
+      const weekly = await response.json();
+      for (const id of ['89', '60']) {
+        const value = weekly[id];
+        if (!value || typeof value.name !== 'string' || typeof value.description !== 'string' || !(value.cents === null || (Number.isInteger(value.cents) && value.cents >= 0))) continue;
+        const product = PRODUCTS.find(product => product.id === id);
+        product.name = value.name; product.description = value.description;
+        product.variants[0].cents = value.cents;
+      }
+    }
+  } catch { /* Static previews retain the standard weekly suggestions. */ }
+}
 const euro = (cents) => new Intl.NumberFormat('nl-BE', { style: 'currency', currency: 'EUR' }).format(cents / 100);
 const grid = document.querySelector('.menu-grid');
+let previousGroup = '';
 PRODUCTS.forEach((product) => {
+  const groupKey = `${product.category}:${product.group}`;
+  if (groupKey !== previousGroup) {
+    const heading = document.createElement('h3');
+    heading.className = 'menu-group-title';
+    heading.textContent = product.group;
+    heading.dataset.group = groupKey;
+    grid.append(heading);
+    previousGroup = groupKey;
+  }
   const item = document.createElement('article');
+  item.dataset.group = groupKey;
   item.className = `menu-item${product.featured ? ' featured' : ''}`;
   item.dataset.category = product.category;
   item.dataset.productId = product.id;
@@ -48,6 +74,9 @@ function showCategory(filter = activeFilter) {
     if (visible) count++;
     item.classList.toggle('is-hidden', !visible);
     item.setAttribute('aria-hidden', String(!visible));
+  });
+  document.querySelectorAll('.menu-group-title').forEach(heading => {
+    heading.hidden = ![...items].some(item => item.dataset.group === heading.dataset.group && !item.classList.contains('is-hidden'));
   });
   tabs.forEach(tab => {
     const active = !searchTerm && tab.dataset.filter === filter;
@@ -95,7 +124,7 @@ quantityPlus.addEventListener('click', () => changeQuantity(selectedQuantity + 1
 
 
 function selectedSauce() {
-  if (!form.elements.sauce.value) return null;
+  if (form.elements.sauce.disabled || !form.elements.sauce.value) return null;
   const portion = form.elements.saucePortion;
   return {
     name: form.elements.sauce.value,
@@ -109,14 +138,13 @@ function sauceDescription(sauce) {
 }
 
 function selectedBread() {
-  const size = form.querySelector('[name="size"]:checked');
-  return isSandwich && size?.value.startsWith('Groot') ? form.elements.bread.value : '';
+  return selectedProduct?.breadChoice ? form.elements.bread.value : '';
 }
 
 function priceDescription() {
   const size = form.querySelector('[name="size"]:checked');
   if (!size) return 'Kies een formaat om de prijs te zien.';
-  const extraCents = [...form.querySelectorAll('[name="extra"]:checked')]
+  const extraCents = [...form.querySelectorAll('[name="extra"]:checked:not(:disabled)')]
     .reduce((total, input) => total + Number(input.dataset.priceCents), 0);
   const sauceCents = selectedSauce()?.cents ?? 0;
   const hasNotes = form.elements.notes.value.trim();
@@ -159,7 +187,7 @@ function focusStep() {
 
 items.forEach((item) => {
   const platter = item.dataset.category === 'schotels';
-  const sandwich = item.dataset.category === 'broodjes';
+  const sandwich = PRODUCTS.find(product => product.id === item.dataset.productId).breadChoice;
   const product = PRODUCTS.find(product => product.id === item.dataset.productId);
   const name = product.name;
   const quickAdd = product.category === 'dranken' && product.variants.length === 1 && !name.toLowerCase().includes('koffie');
@@ -189,11 +217,17 @@ items.forEach((item) => {
     changeQuantity(1);
     const drink = item.dataset.category === 'dranken';
     const coffee = drink && name.toLowerCase().includes('koffie');
-    form.elements.notes.closest('label').hidden = drink && !coffee;
+    const spaghetti = product.extrasMode === 'spaghetti';
+    form.elements.notes.closest('label').hidden = spaghetti || (drink && !coffee);
     form.elements.notes.placeholder = coffee
       ? 'Bijvoorbeeld: zonder melk, zonder suiker'
       : defaultNotesPlaceholder;
-    extras.querySelectorAll('fieldset, label[for="sandwich-sauce"], .sandwich-help').forEach((element) => { element.hidden = drink; });
+    extras.querySelectorAll('fieldset, label[for="sandwich-sauce"], .sandwich-help').forEach((element) => {
+      const cheese = element.id === 'spaghetti-extra';
+      element.hidden = cheese ? !spaghetti : drink || spaghetti;
+      if (element.tagName === 'FIELDSET') element.disabled = element.hidden;
+    });
+    form.elements.sauce.disabled = drink || spaghetti;
     sizes.querySelector('legend').textContent = sandwich ? 'Hoe groot is je goesting?' : 'Kies je variant';
     document.querySelector('#sandwich-title').textContent = name;
     document.querySelector('#sandwich-description').textContent = item.querySelector('p').textContent;
@@ -244,7 +278,7 @@ form.addEventListener('submit', (event) => {
     return;
   }
   const size = form.querySelector('[name="size"]:checked');
-  const additions = [...form.querySelectorAll('[name="extra"]:checked')]
+  const additions = [...form.querySelectorAll('[name="extra"]:checked:not(:disabled)')]
     .map((input) => `${input.value} (+${euro(Number(input.dataset.priceCents))})`);
   const sauce = selectedSauce();
   if (sauce) additions.push(sauceDescription(sauce));
@@ -279,6 +313,20 @@ dialog.addEventListener('close', () => {
 });
 
 searchInput.addEventListener('input', () => showCategory());
+const weeklyCards = document.querySelector('#weekly-cards');
+PRODUCTS.filter(product => product.weekly).forEach(product => {
+  const card = document.createElement('article'); card.className = 'weekly-card';
+  const label = document.createElement('p'); label.className = 'eyebrow'; label.textContent = product.id === '89' ? 'Broodje van de week' : 'Salade van de week';
+  const heading = document.createElement('h3'); heading.textContent = product.name;
+  const description = document.createElement('p'); description.textContent = product.description;
+  const price = document.createElement('strong'); price.textContent = product.variants[0].cents === null ? 'Vraag naar het aanbod en de prijs' : euro(product.variants[0].cents);
+  const button = document.createElement('button'); button.type = 'button'; button.className = 'button button-dark'; button.textContent = 'Kies deze weeksuggestie';
+  button.addEventListener('click', () => {
+    searchInput.value = ''; showCategory(product.category);
+    document.querySelector(`[data-product-id="${product.id}"] .sandwich-customize`).click();
+  });
+  card.append(label, heading, description, price, button); weeklyCards.append(card);
+});
 
 const CART_KEY = 'piccolo-cart-v1';
 const CART_TTL = 24 * 60 * 60 * 1000;
@@ -389,7 +437,7 @@ call.addEventListener('click', () => {
     variant: size.value,
     bread: selectedBread(),
     baseCents: size.dataset.priceCents === '' ? null : Number(size.dataset.priceCents),
-    extras: [...form.querySelectorAll('[name="extra"]:checked')].map((input) => ({ name: input.value, cents: Number(input.dataset.priceCents) })),
+    extras: [...form.querySelectorAll('[name="extra"]:checked:not(:disabled)')].map((input) => ({ name: input.value, cents: Number(input.dataset.priceCents) })),
     sauce: selectedSauce(),
     notes: form.elements.notes.value.trim(),
     quantity: selectedQuantity

@@ -24,7 +24,9 @@ const PRODUCTS = [
         "name": "Klein smoske",
         "cents": 620
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Klassiekers & specialiteiten"
   },
   {
     "id": "02",
@@ -42,7 +44,9 @@ const PRODUCTS = [
         "name": "Groot broodje",
         "cents": 800
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Klassiekers & specialiteiten"
   },
   {
     "id": "03",
@@ -60,7 +64,9 @@ const PRODUCTS = [
         "name": "Groot broodje",
         "cents": 750
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Klassiekers & specialiteiten"
   },
   {
     "id": "04",
@@ -78,7 +84,9 @@ const PRODUCTS = [
         "name": "Groot broodje",
         "cents": 750
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Klassiekers & specialiteiten"
   },
   {
     "id": "05",
@@ -96,7 +104,9 @@ const PRODUCTS = [
         "name": "Groot broodje",
         "cents": 700
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Klassiekers & specialiteiten"
   },
   {
     "id": "06",
@@ -122,7 +132,9 @@ const PRODUCTS = [
         "name": "Klein smoske",
         "cents": 750
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Klassiekers & specialiteiten"
   },
   {
     "id": "16",
@@ -148,7 +160,9 @@ const PRODUCTS = [
         "name": "Klein smoske",
         "cents": 450
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Klassiekers & specialiteiten"
   },
   {
     "id": "17",
@@ -174,7 +188,9 @@ const PRODUCTS = [
         "name": "Klein smoske",
         "cents": 450
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Klassiekers & specialiteiten"
   },
   {
     "id": "18",
@@ -200,7 +216,9 @@ const PRODUCTS = [
         "name": "Klein smoske",
         "cents": 550
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Klassiekers & specialiteiten"
   },
   {
     "id": "19",
@@ -226,7 +244,9 @@ const PRODUCTS = [
         "name": "Klein smoske",
         "cents": 550
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Klassiekers & specialiteiten"
   },
   {
     "id": "20",
@@ -252,7 +272,9 @@ const PRODUCTS = [
         "name": "Klein smoske",
         "cents": 550
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Klassiekers & specialiteiten"
   },
   {
     "id": "21",
@@ -278,7 +300,9 @@ const PRODUCTS = [
         "name": "Klein smoske",
         "cents": 550
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Klassiekers & specialiteiten"
   },
   {
     "id": "22",
@@ -304,7 +328,9 @@ const PRODUCTS = [
         "name": "Klein smoske",
         "cents": 670
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Klassiekers & specialiteiten"
   },
   {
     "id": "23",
@@ -330,7 +356,9 @@ const PRODUCTS = [
         "name": "Klein smoske",
         "cents": 550
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Klassiekers & specialiteiten"
   },
   {
     "id": "24",
@@ -356,7 +384,9 @@ const PRODUCTS = [
         "name": "Klein smoske",
         "cents": 550
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Klassiekers & specialiteiten"
   },
   {
     "id": "25",
@@ -382,7 +412,9 @@ const PRODUCTS = [
         "name": "Klein smoske",
         "cents": 550
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Klassiekers & specialiteiten"
   },
   {
     "id": "26",
@@ -408,7 +440,9 @@ const PRODUCTS = [
         "name": "Klein smoske",
         "cents": 550
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Klassiekers & specialiteiten"
   },
   {
     "id": "27",
@@ -434,7 +468,9 @@ const PRODUCTS = [
         "name": "Klein smoske",
         "cents": 620
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Klassiekers & specialiteiten"
   },
   {
     "id": "61",
@@ -460,61 +496,9 @@ const PRODUCTS = [
         "name": "Klein smoske",
         "cents": 750
       }
-    ]
-  },
-  {
-    "id": "62",
-    "name": "Broodje croque",
-    "description": "Kaas & hesp",
-    "category": "broodjes",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Klein broodje",
-        "cents": 500
-      },
-      {
-        "name": "Groot broodje",
-        "cents": 550
-      }
-    ]
-  },
-  {
-    "id": "63",
-    "name": "Broodje croque zalm & brie",
-    "description": "Warme croque met zalm en brie",
-    "category": "broodjes",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Klein broodje",
-        "cents": 800
-      },
-      {
-        "name": "Groot broodje",
-        "cents": 850
-      }
-    ]
-  },
-  {
-    "id": "64",
-    "name": "Italiaanse croque",
-    "description": "Met mozzarella, Parmaham, pesto & zongedroogde tomaat",
-    "category": "broodjes",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Klein broodje",
-        "cents": 800
-      },
-      {
-        "name": "Groot broodje",
-        "cents": 850
-      }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Klassiekers & specialiteiten"
   },
   {
     "id": "65",
@@ -532,7 +516,9 @@ const PRODUCTS = [
         "name": "Groot broodje",
         "cents": 500
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Klassiekers & specialiteiten"
   },
   {
     "id": "66",
@@ -550,25 +536,9 @@ const PRODUCTS = [
         "name": "Groot broodje",
         "cents": 600
       }
-    ]
-  },
-  {
-    "id": "67",
-    "name": "Smos kaas & hesp special",
-    "description": "Kaas, hesp, ketchup, mayonaise & ui",
-    "category": "broodjes",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Klein broodje",
-        "cents": 650
-      },
-      {
-        "name": "Groot broodje",
-        "cents": 700
-      }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Klassiekers & specialiteiten"
   },
   {
     "id": "68",
@@ -586,133 +556,9 @@ const PRODUCTS = [
         "name": "Groot broodje",
         "cents": 700
       }
-    ]
-  },
-  {
-    "id": "69",
-    "name": "Smos gerookt spek",
-    "description": "Sla, tomaat, ei, gerookt spek & barbecuesaus",
-    "category": "broodjes",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Klein broodje",
-        "cents": 600
-      },
-      {
-        "name": "Groot broodje",
-        "cents": 650
-      }
-    ]
-  },
-  {
-    "id": "70",
-    "name": "Boerensmos",
-    "description": "Ei-bieslooksla, sla, tomaat, gerookt spek & mayonaise",
-    "category": "broodjes",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Klein broodje",
-        "cents": 650
-      },
-      {
-        "name": "Groot broodje",
-        "cents": 700
-      }
-    ]
-  },
-  {
-    "id": "71",
-    "name": "Club Kip",
-    "description": "Sla, tomaat, ei, kipfilet & mayonaise",
-    "category": "broodjes",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Klein broodje",
-        "cents": 650
-      },
-      {
-        "name": "Groot broodje",
-        "cents": 700
-      }
-    ]
-  },
-  {
-    "id": "72",
-    "name": "Club special",
-    "description": "Sla, tomaat, ei, kipfilet & barbecuesaus",
-    "category": "broodjes",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Klein broodje",
-        "cents": 670
-      },
-      {
-        "name": "Groot broodje",
-        "cents": 720
-      }
-    ]
-  },
-  {
-    "id": "73",
-    "name": "Club Kip Hawaï",
-    "description": "Sla, tomaat, ei, kipfilet, ananas & cocktailsaus",
-    "category": "broodjes",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Klein broodje",
-        "cents": 700
-      },
-      {
-        "name": "Groot broodje",
-        "cents": 750
-      }
-    ]
-  },
-  {
-    "id": "74",
-    "name": "Club Kip Aardappelsla",
-    "description": "Club Kip Aardappelsla",
-    "category": "broodjes",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Klein broodje",
-        "cents": 800
-      },
-      {
-        "name": "Groot broodje",
-        "cents": 850
-      }
-    ]
-  },
-  {
-    "id": "75",
-    "name": "Hanniclub",
-    "description": "Sla, ei, worteltjes, kipfilet, kruiden, bicky-ui & hannibalsaus",
-    "category": "broodjes",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Klein broodje",
-        "cents": 700
-      },
-      {
-        "name": "Groot broodje",
-        "cents": 750
-      }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Klassiekers & specialiteiten"
   },
   {
     "id": "76",
@@ -730,7 +576,9 @@ const PRODUCTS = [
         "name": "Groot broodje",
         "cents": 750
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Klassiekers & specialiteiten"
   },
   {
     "id": "77",
@@ -748,7 +596,9 @@ const PRODUCTS = [
         "name": "Groot broodje",
         "cents": 650
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Klassiekers & specialiteiten"
   },
   {
     "id": "78",
@@ -766,7 +616,9 @@ const PRODUCTS = [
         "name": "Groot broodje",
         "cents": 700
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Klassiekers & specialiteiten"
   },
   {
     "id": "79",
@@ -784,25 +636,9 @@ const PRODUCTS = [
         "name": "Groot broodje",
         "cents": 750
       }
-    ]
-  },
-  {
-    "id": "80",
-    "name": "Smos Hawaï",
-    "description": "Sla, tomaat, ei, kaas, hesp, ananas & cocktailsaus",
-    "category": "broodjes",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Klein broodje",
-        "cents": 650
-      },
-      {
-        "name": "Groot broodje",
-        "cents": 700
-      }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Klassiekers & specialiteiten"
   },
   {
     "id": "81",
@@ -820,7 +656,9 @@ const PRODUCTS = [
         "name": "Groot broodje",
         "cents": 750
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Klassiekers & specialiteiten"
   },
   {
     "id": "87",
@@ -846,7 +684,9 @@ const PRODUCTS = [
         "name": "Klein smoske",
         "cents": 650
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Klassiekers & specialiteiten"
   },
   {
     "id": "88",
@@ -872,7 +712,189 @@ const PRODUCTS = [
         "name": "Klein smoske",
         "cents": 550
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Klassiekers & specialiteiten"
+  },
+  {
+    "id": "67",
+    "name": "Smos kaas & hesp special",
+    "description": "Kaas, hesp, ketchup, mayonaise & ui",
+    "category": "broodjes",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Klein broodje",
+        "cents": 650
+      },
+      {
+        "name": "Groot broodje",
+        "cents": 700
+      }
+    ],
+    "breadChoice": true,
+    "group": "Smoskes"
+  },
+  {
+    "id": "69",
+    "name": "Smos gerookt spek",
+    "description": "Sla, tomaat, ei, gerookt spek & barbecuesaus",
+    "category": "broodjes",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Klein broodje",
+        "cents": 600
+      },
+      {
+        "name": "Groot broodje",
+        "cents": 650
+      }
+    ],
+    "breadChoice": true,
+    "group": "Smoskes"
+  },
+  {
+    "id": "70",
+    "name": "Boerensmos",
+    "description": "Ei-bieslooksla, sla, tomaat, gerookt spek & mayonaise",
+    "category": "broodjes",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Klein broodje",
+        "cents": 650
+      },
+      {
+        "name": "Groot broodje",
+        "cents": 700
+      }
+    ],
+    "breadChoice": true,
+    "group": "Smoskes"
+  },
+  {
+    "id": "80",
+    "name": "Smos Hawaï",
+    "description": "Sla, tomaat, ei, kaas, hesp, ananas & cocktailsaus",
+    "category": "broodjes",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Klein broodje",
+        "cents": 650
+      },
+      {
+        "name": "Groot broodje",
+        "cents": 700
+      }
+    ],
+    "breadChoice": true,
+    "group": "Smoskes"
+  },
+  {
+    "id": "71",
+    "name": "Club Kip",
+    "description": "Sla, tomaat, ei, kipfilet & mayonaise",
+    "category": "broodjes",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Klein broodje",
+        "cents": 650
+      },
+      {
+        "name": "Groot broodje",
+        "cents": 700
+      }
+    ],
+    "breadChoice": true,
+    "group": "Clubs"
+  },
+  {
+    "id": "72",
+    "name": "Club special",
+    "description": "Sla, tomaat, ei, kipfilet & barbecuesaus",
+    "category": "broodjes",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Klein broodje",
+        "cents": 670
+      },
+      {
+        "name": "Groot broodje",
+        "cents": 720
+      }
+    ],
+    "breadChoice": true,
+    "group": "Clubs"
+  },
+  {
+    "id": "73",
+    "name": "Club Kip Hawaï",
+    "description": "Sla, tomaat, ei, kipfilet, ananas & cocktailsaus",
+    "category": "broodjes",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Klein broodje",
+        "cents": 700
+      },
+      {
+        "name": "Groot broodje",
+        "cents": 750
+      }
+    ],
+    "breadChoice": true,
+    "group": "Clubs"
+  },
+  {
+    "id": "74",
+    "name": "Club Kip Aardappelsla",
+    "description": "Club Kip Aardappelsla",
+    "category": "broodjes",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Klein broodje",
+        "cents": 800
+      },
+      {
+        "name": "Groot broodje",
+        "cents": 850
+      }
+    ],
+    "breadChoice": true,
+    "group": "Clubs"
+  },
+  {
+    "id": "75",
+    "name": "Hanniclub",
+    "description": "Sla, ei, worteltjes, kipfilet, kruiden, bicky-ui & hannibalsaus",
+    "category": "broodjes",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Klein broodje",
+        "cents": 700
+      },
+      {
+        "name": "Groot broodje",
+        "cents": 750
+      }
+    ],
+    "breadChoice": true,
+    "group": "Clubs"
   },
   {
     "id": "89",
@@ -886,13 +908,76 @@ const PRODUCTS = [
         "name": "Standaard",
         "cents": null
       }
-    ]
+    ],
+    "breadChoice": true,
+    "weekly": true,
+    "group": "Weeksuggestie"
+  },
+  {
+    "id": "62",
+    "name": "Broodje croque",
+    "description": "Kaas & hesp",
+    "category": "croques",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Klein broodje",
+        "cents": 500
+      },
+      {
+        "name": "Groot broodje",
+        "cents": 550
+      }
+    ],
+    "breadChoice": true,
+    "group": "Croques"
+  },
+  {
+    "id": "63",
+    "name": "Broodje croque zalm & brie",
+    "description": "Warme croque met zalm en brie",
+    "category": "croques",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Klein broodje",
+        "cents": 800
+      },
+      {
+        "name": "Groot broodje",
+        "cents": 850
+      }
+    ],
+    "breadChoice": true,
+    "group": "Croques"
+  },
+  {
+    "id": "64",
+    "name": "Italiaanse croque",
+    "description": "Met mozzarella, Parmaham, pesto & zongedroogde tomaat",
+    "category": "croques",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Klein broodje",
+        "cents": 800
+      },
+      {
+        "name": "Groot broodje",
+        "cents": 850
+      }
+    ],
+    "breadChoice": true,
+    "group": "Croques"
   },
   {
     "id": "07",
     "name": "Croque Hawaï",
     "description": "Kaas, hesp & ananas",
-    "category": "warm",
+    "category": "croques",
     "featured": false,
     "sideChoice": false,
     "variants": [
@@ -900,7 +985,9 @@ const PRODUCTS = [
         "name": "Groot broodje",
         "cents": 600
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Croques"
   },
   {
     "id": "08",
@@ -918,39 +1005,9 @@ const PRODUCTS = [
         "name": "Groot smoske",
         "cents": 700
       }
-    ]
-  },
-  {
-    "id": "09",
-    "name": "Huisbereide spaghetti",
-    "description": "Grote portie met groentjes, kippengehakt & kaas",
-    "category": "warm",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Standaard",
-        "cents": 950
-      }
-    ]
-  },
-  {
-    "id": "28",
-    "name": "Boulet",
-    "description": "Warme snack op een groot broodje of groot smoske",
-    "category": "warm",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Groot broodje",
-        "cents": 550
-      },
-      {
-        "name": "Groot smoske",
-        "cents": 650
-      }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Warme broodjes"
   },
   {
     "id": "29",
@@ -968,7 +1025,9 @@ const PRODUCTS = [
         "name": "Groot smoske",
         "cents": 650
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Warme broodjes"
   },
   {
     "id": "30",
@@ -986,7 +1045,9 @@ const PRODUCTS = [
         "name": "Groot smoske",
         "cents": 650
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Warme broodjes"
   },
   {
     "id": "31",
@@ -1004,7 +1065,9 @@ const PRODUCTS = [
         "name": "Groot smoske",
         "cents": 650
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Warme broodjes"
   },
   {
     "id": "32",
@@ -1022,7 +1085,9 @@ const PRODUCTS = [
         "name": "Groot smoske",
         "cents": 650
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Warme broodjes"
   },
   {
     "id": "33",
@@ -1040,7 +1105,9 @@ const PRODUCTS = [
         "name": "Groot smoske",
         "cents": 750
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Warme broodjes"
   },
   {
     "id": "34",
@@ -1058,7 +1125,9 @@ const PRODUCTS = [
         "name": "Groot smoske",
         "cents": 750
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Warme broodjes"
   },
   {
     "id": "35",
@@ -1076,147 +1145,9 @@ const PRODUCTS = [
         "name": "Groot smoske",
         "cents": 750
       }
-    ]
-  },
-  {
-    "id": "36",
-    "name": "Boerenboulet",
-    "description": "Groot broodje, huisbereide aardappelsla, sla, tomaat, ei, boulet, augurk & 1 saus naar keuze",
-    "category": "warm",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Standaard",
-        "cents": 800
-      }
-    ]
-  },
-  {
-    "id": "37",
-    "name": "Visburger",
-    "description": "Pistolet met sla, tomaat & ei",
-    "category": "warm",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Standaard",
-        "cents": 550
-      }
-    ]
-  },
-  {
-    "id": "38",
-    "name": "Kipburger",
-    "description": "Pistolet met sla, tomaat & ei",
-    "category": "warm",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Standaard",
-        "cents": 550
-      }
-    ]
-  },
-  {
-    "id": "39",
-    "name": "Bicky Burger",
-    "description": "Met bickysaus",
-    "category": "warm",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Standaard",
-        "cents": 550
-      }
-    ]
-  },
-  {
-    "id": "40",
-    "name": "Bicky Cheese Bacon Burger",
-    "description": "Met kaas en spek",
-    "category": "warm",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Standaard",
-        "cents": 700
-      }
-    ]
-  },
-  {
-    "id": "82",
-    "name": "Vis XL",
-    "description": "Groot broodje met sla, tomaat, ei & tartaar",
-    "category": "warm",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Standaard",
-        "cents": 650
-      }
-    ]
-  },
-  {
-    "id": "83",
-    "name": "Kip XL",
-    "description": "Groot broodje met sla, tomaat, ei & saus",
-    "category": "warm",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Standaard",
-        "cents": 650
-      }
-    ]
-  },
-  {
-    "id": "84",
-    "name": "Bicky Cheese Burger",
-    "description": "Bicky burger met kaas",
-    "category": "warm",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Standaard",
-        "cents": 600
-      }
-    ]
-  },
-  {
-    "id": "85",
-    "name": "Bicky Boulet",
-    "description": "Boulet met bickysaus",
-    "category": "warm",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Standaard",
-        "cents": 650
-      }
-    ]
-  },
-  {
-    "id": "86",
-    "name": "Bicky Mexicano",
-    "description": "Mexicano met bickysaus",
-    "category": "warm",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Standaard",
-        "cents": 650
-      }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Warme broodjes"
   },
   {
     "id": "90",
@@ -1234,7 +1165,9 @@ const PRODUCTS = [
         "name": "Groot smoske",
         "cents": 650
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Warme broodjes"
   },
   {
     "id": "91",
@@ -1252,7 +1185,26 @@ const PRODUCTS = [
         "name": "Groot smoske",
         "cents": 700
       }
-    ]
+    ],
+    "breadChoice": true,
+    "group": "Warme broodjes"
+  },
+  {
+    "id": "09",
+    "name": "Huisbereide spaghetti",
+    "description": "Grote portie met groentjes, kippengehakt & kaas",
+    "category": "warm",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Standaard",
+        "cents": 950
+      }
+    ],
+    "breadChoice": false,
+    "extrasMode": "spaghetti",
+    "group": "Warme gerechten"
   },
   {
     "id": "92",
@@ -1266,7 +1218,9 @@ const PRODUCTS = [
         "name": "Standaard",
         "cents": 300
       }
-    ]
+    ],
+    "breadChoice": false,
+    "group": "Warme gerechten"
   },
   {
     "id": "93",
@@ -1280,7 +1234,205 @@ const PRODUCTS = [
         "name": "Standaard",
         "cents": 750
       }
-    ]
+    ],
+    "breadChoice": false,
+    "group": "Warme gerechten"
+  },
+  {
+    "id": "28",
+    "name": "Boulet",
+    "description": "Warme snack op een groot broodje of groot smoske",
+    "category": "warm",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Groot broodje",
+        "cents": 550
+      },
+      {
+        "name": "Groot smoske",
+        "cents": 650
+      }
+    ],
+    "breadChoice": true,
+    "group": "Bouletjes"
+  },
+  {
+    "id": "36",
+    "name": "Boerenboulet",
+    "description": "Groot broodje, huisbereide aardappelsla, sla, tomaat, ei, boulet, augurk & 1 saus naar keuze",
+    "category": "warm",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Standaard",
+        "cents": 800
+      }
+    ],
+    "breadChoice": true,
+    "group": "Bouletjes"
+  },
+  {
+    "id": "104",
+    "name": "Cheeseboulet",
+    "description": "Broodje met boulet en kaas",
+    "category": "warm",
+    "featured": false,
+    "sideChoice": false,
+    "breadChoice": true,
+    "variants": [
+      {
+        "name": "Broodje",
+        "cents": 750
+      }
+    ],
+    "group": "Bouletjes"
+  },
+  {
+    "id": "37",
+    "name": "Visburger",
+    "description": "Pistolet met sla, tomaat & ei",
+    "category": "burgers",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Standaard",
+        "cents": 550
+      }
+    ],
+    "breadChoice": false,
+    "group": "Kip & vis"
+  },
+  {
+    "id": "38",
+    "name": "Kipburger",
+    "description": "Pistolet met sla, tomaat & ei",
+    "category": "burgers",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Standaard",
+        "cents": 550
+      }
+    ],
+    "breadChoice": false,
+    "group": "Kip & vis"
+  },
+  {
+    "id": "82",
+    "name": "Vis XL",
+    "description": "Groot broodje met sla, tomaat, ei & tartaar",
+    "category": "burgers",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Standaard",
+        "cents": 650
+      }
+    ],
+    "breadChoice": false,
+    "group": "Kip & vis"
+  },
+  {
+    "id": "83",
+    "name": "Kip XL",
+    "description": "Groot broodje met sla, tomaat, ei & saus",
+    "category": "burgers",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Standaard",
+        "cents": 650
+      }
+    ],
+    "breadChoice": false,
+    "group": "Kip & vis"
+  },
+  {
+    "id": "39",
+    "name": "Bicky Burger",
+    "description": "Met bickysaus",
+    "category": "burgers",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Standaard",
+        "cents": 550
+      }
+    ],
+    "breadChoice": false,
+    "group": "Bicky burgers"
+  },
+  {
+    "id": "40",
+    "name": "Bicky Cheese Bacon Burger",
+    "description": "Met kaas en spek",
+    "category": "burgers",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Standaard",
+        "cents": 700
+      }
+    ],
+    "breadChoice": false,
+    "group": "Bicky burgers"
+  },
+  {
+    "id": "84",
+    "name": "Bicky Cheese Burger",
+    "description": "Bicky burger met kaas",
+    "category": "burgers",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Standaard",
+        "cents": 600
+      }
+    ],
+    "breadChoice": false,
+    "group": "Bicky burgers"
+  },
+  {
+    "id": "85",
+    "name": "Bicky Boulet",
+    "description": "Boulet met bickysaus",
+    "category": "burgers",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Standaard",
+        "cents": 650
+      }
+    ],
+    "breadChoice": false,
+    "group": "Bicky burgers"
+  },
+  {
+    "id": "86",
+    "name": "Bicky Mexicano",
+    "description": "Mexicano met bickysaus",
+    "category": "burgers",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Standaard",
+        "cents": 650
+      }
+    ],
+    "breadChoice": false,
+    "group": "Bicky burgers"
   },
   {
     "id": "10",
@@ -1302,7 +1454,9 @@ const PRODUCTS = [
         "name": "Super",
         "cents": 700
       }
-    ]
+    ],
+    "breadChoice": false,
+    "group": "Hamburgers"
   },
   {
     "id": "11",
@@ -1324,7 +1478,9 @@ const PRODUCTS = [
         "name": "Super",
         "cents": 800
       }
-    ]
+    ],
+    "breadChoice": false,
+    "group": "Hamburgers"
   },
   {
     "id": "12",
@@ -1338,7 +1494,9 @@ const PRODUCTS = [
         "name": "Super",
         "cents": 900
       }
-    ]
+    ],
+    "breadChoice": false,
+    "group": "Hamburgers"
   },
   {
     "id": "41",
@@ -1360,7 +1518,9 @@ const PRODUCTS = [
         "name": "Super",
         "cents": 650
       }
-    ]
+    ],
+    "breadChoice": false,
+    "group": "Hamburgers"
   },
   {
     "id": "42",
@@ -1382,7 +1542,9 @@ const PRODUCTS = [
         "name": "Super",
         "cents": 770
       }
-    ]
+    ],
+    "breadChoice": false,
+    "group": "Hamburgers"
   },
   {
     "id": "43",
@@ -1404,7 +1566,9 @@ const PRODUCTS = [
         "name": "Super",
         "cents": 700
       }
-    ]
+    ],
+    "breadChoice": false,
+    "group": "Hamburgers"
   },
   {
     "id": "44",
@@ -1426,7 +1590,9 @@ const PRODUCTS = [
         "name": "Super",
         "cents": 750
       }
-    ]
+    ],
+    "breadChoice": false,
+    "group": "Hamburgers"
   },
   {
     "id": "45",
@@ -1448,7 +1614,9 @@ const PRODUCTS = [
         "name": "Super",
         "cents": 700
       }
-    ]
+    ],
+    "breadChoice": false,
+    "group": "Hamburgers"
   },
   {
     "id": "46",
@@ -1470,7 +1638,9 @@ const PRODUCTS = [
         "name": "Super",
         "cents": 850
       }
-    ]
+    ],
+    "breadChoice": false,
+    "group": "Hamburgers"
   },
   {
     "id": "47",
@@ -1484,7 +1654,250 @@ const PRODUCTS = [
         "name": "Super",
         "cents": 750
       }
-    ]
+    ],
+    "breadChoice": false,
+    "group": "Hamburgers"
+  },
+  {
+    "id": "60",
+    "name": "Salade van de week",
+    "description": "Elke week een verse, voedzame verrassing",
+    "category": "schotels",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Koude schotel",
+        "cents": null
+      }
+    ],
+    "breadChoice": false,
+    "weekly": true,
+    "group": "Weeksuggestie"
+  },
+  {
+    "id": "53",
+    "name": "Koude schotel klein — natuur",
+    "description": "Sla, tomaat, ei, komkommer, worteltjes, augurk, mayonaise, aardappelsla & een groot broodje",
+    "category": "schotels",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Koude schotel",
+        "cents": 750
+      }
+    ],
+    "breadChoice": false,
+    "group": "Kleine schotels"
+  },
+  {
+    "id": "54",
+    "name": "Koude schotel klein — met hesp",
+    "description": "Sla, tomaat, ei, komkommer, worteltjes, augurk, mayonaise, aardappelsla & een groot broodje",
+    "category": "schotels",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Koude schotel",
+        "cents": 850
+      }
+    ],
+    "breadChoice": false,
+    "group": "Kleine schotels"
+  },
+  {
+    "id": "55",
+    "name": "Koude schotel klein — met americain",
+    "description": "Sla, tomaat, ei, komkommer, worteltjes, augurk, mayonaise, aardappelsla & een groot broodje",
+    "category": "schotels",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Koude schotel",
+        "cents": 950
+      }
+    ],
+    "breadChoice": false,
+    "group": "Kleine schotels"
+  },
+  {
+    "id": "56",
+    "name": "Koude schotel klein — met kip",
+    "description": "Sla, tomaat, ei, komkommer, worteltjes, augurk, mayonaise, aardappelsla & een groot broodje",
+    "category": "schotels",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Koude schotel",
+        "cents": 950
+      }
+    ],
+    "breadChoice": false,
+    "group": "Kleine schotels"
+  },
+  {
+    "id": "57",
+    "name": "Koude schotel klein — met tonijn",
+    "description": "Sla, tomaat, ei, komkommer, worteltjes, augurk, mayonaise, aardappelsla & een groot broodje. Met een blikje tonijn.",
+    "category": "schotels",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Koude schotel",
+        "cents": 1000
+      }
+    ],
+    "breadChoice": false,
+    "group": "Kleine schotels"
+  },
+  {
+    "id": "58",
+    "name": "Koude schotel klein — met gerookte zalm",
+    "description": "Sla, tomaat, ei, komkommer, worteltjes, augurk, mayonaise, aardappelsla & een groot broodje",
+    "category": "schotels",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Koude schotel",
+        "cents": 1050
+      }
+    ],
+    "breadChoice": false,
+    "group": "Kleine schotels"
+  },
+  {
+    "id": "59",
+    "name": "Koude schotel klein — met grijze garnaalsla",
+    "description": "Sla, tomaat, ei, komkommer, worteltjes, augurk, mayonaise, aardappelsla & een groot broodje",
+    "category": "schotels",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Koude schotel",
+        "cents": 1150
+      }
+    ],
+    "breadChoice": false,
+    "group": "Kleine schotels"
+  },
+  {
+    "id": "97",
+    "name": "Koude schotel van het huis — natuur",
+    "description": "Sla, tomaat, ei, komkommer, worteltjes, boontjes, rode kool, maïs, paprika & mayonaise. Naar keuze met een groot broodje of aardappelsla",
+    "category": "schotels",
+    "featured": false,
+    "sideChoice": true,
+    "variants": [
+      {
+        "name": "Koude schotel",
+        "cents": 750
+      }
+    ],
+    "breadChoice": false,
+    "group": "Schotels van het huis"
+  },
+  {
+    "id": "98",
+    "name": "Koude schotel van het huis — met hesp",
+    "description": "Sla, tomaat, ei, komkommer, worteltjes, boontjes, rode kool, maïs, paprika & mayonaise. Naar keuze met een groot broodje of aardappelsla",
+    "category": "schotels",
+    "featured": false,
+    "sideChoice": true,
+    "variants": [
+      {
+        "name": "Koude schotel",
+        "cents": 850
+      }
+    ],
+    "breadChoice": false,
+    "group": "Schotels van het huis"
+  },
+  {
+    "id": "99",
+    "name": "Koude schotel van het huis — met americain",
+    "description": "Sla, tomaat, ei, komkommer, worteltjes, boontjes, rode kool, maïs, paprika & mayonaise. Naar keuze met een groot broodje of aardappelsla",
+    "category": "schotels",
+    "featured": false,
+    "sideChoice": true,
+    "variants": [
+      {
+        "name": "Koude schotel",
+        "cents": 950
+      }
+    ],
+    "breadChoice": false,
+    "group": "Schotels van het huis"
+  },
+  {
+    "id": "100",
+    "name": "Koude schotel van het huis — met kip",
+    "description": "Sla, tomaat, ei, komkommer, worteltjes, boontjes, rode kool, maïs, paprika & mayonaise. Naar keuze met een groot broodje of aardappelsla",
+    "category": "schotels",
+    "featured": false,
+    "sideChoice": true,
+    "variants": [
+      {
+        "name": "Koude schotel",
+        "cents": 950
+      }
+    ],
+    "breadChoice": false,
+    "group": "Schotels van het huis"
+  },
+  {
+    "id": "101",
+    "name": "Koude schotel van het huis — met tonijn",
+    "description": "Sla, tomaat, ei, komkommer, worteltjes, boontjes, rode kool, maïs, paprika & mayonaise. Naar keuze met een groot broodje of aardappelsla. Met een blikje tonijn.",
+    "category": "schotels",
+    "featured": false,
+    "sideChoice": true,
+    "variants": [
+      {
+        "name": "Koude schotel",
+        "cents": 1000
+      }
+    ],
+    "breadChoice": false,
+    "group": "Schotels van het huis"
+  },
+  {
+    "id": "102",
+    "name": "Koude schotel van het huis — met gerookte zalm",
+    "description": "Sla, tomaat, ei, komkommer, worteltjes, boontjes, rode kool, maïs, paprika & mayonaise. Naar keuze met een groot broodje of aardappelsla",
+    "category": "schotels",
+    "featured": false,
+    "sideChoice": true,
+    "variants": [
+      {
+        "name": "Koude schotel",
+        "cents": 1050
+      }
+    ],
+    "breadChoice": false,
+    "group": "Schotels van het huis"
+  },
+  {
+    "id": "103",
+    "name": "Koude schotel van het huis — met grijze garnaalsla",
+    "description": "Sla, tomaat, ei, komkommer, worteltjes, boontjes, rode kool, maïs, paprika & mayonaise. Naar keuze met een groot broodje of aardappelsla",
+    "category": "schotels",
+    "featured": false,
+    "sideChoice": true,
+    "variants": [
+      {
+        "name": "Koude schotel",
+        "cents": 1150
+      }
+    ],
+    "breadChoice": false,
+    "group": "Schotels van het huis"
   },
   {
     "id": "13",
@@ -1498,7 +1911,25 @@ const PRODUCTS = [
         "name": "Meeneembeker",
         "cents": 300
       }
-    ]
+    ],
+    "breadChoice": false,
+    "group": "Koffie"
+  },
+  {
+    "id": "52",
+    "name": "Koffie verkeerd",
+    "description": "Beker",
+    "category": "dranken",
+    "featured": false,
+    "sideChoice": false,
+    "variants": [
+      {
+        "name": "Beker",
+        "cents": 350
+      }
+    ],
+    "breadChoice": false,
+    "group": "Koffie"
   },
   {
     "id": "14",
@@ -1516,7 +1947,9 @@ const PRODUCTS = [
         "name": "Flesje",
         "cents": 320
       }
-    ]
+    ],
+    "breadChoice": false,
+    "group": "Frisdranken"
   },
   {
     "id": "15",
@@ -1530,7 +1963,9 @@ const PRODUCTS = [
         "name": "Blikje",
         "cents": 320
       }
-    ]
+    ],
+    "breadChoice": false,
+    "group": "Frisdranken"
   },
   {
     "id": "48",
@@ -1544,7 +1979,9 @@ const PRODUCTS = [
         "name": "Flesje",
         "cents": 200
       }
-    ]
+    ],
+    "breadChoice": false,
+    "group": "Frisdranken"
   },
   {
     "id": "49",
@@ -1558,7 +1995,9 @@ const PRODUCTS = [
         "name": "Flesje",
         "cents": 270
       }
-    ]
+    ],
+    "breadChoice": false,
+    "group": "Frisdranken"
   },
   {
     "id": "50",
@@ -1572,21 +2011,9 @@ const PRODUCTS = [
         "name": "Flesje",
         "cents": 320
       }
-    ]
-  },
-  {
-    "id": "52",
-    "name": "Koffie verkeerd",
-    "description": "Beker",
-    "category": "dranken",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Beker",
-        "cents": 350
-      }
-    ]
+    ],
+    "breadChoice": false,
+    "group": "Frisdranken"
   },
   {
     "id": "94",
@@ -1604,7 +2031,9 @@ const PRODUCTS = [
         "name": "Flesje",
         "cents": 320
       }
-    ]
+    ],
+    "breadChoice": false,
+    "group": "Frisdranken"
   },
   {
     "id": "95",
@@ -1618,7 +2047,9 @@ const PRODUCTS = [
         "name": "Blikje",
         "cents": 270
       }
-    ]
+    ],
+    "breadChoice": false,
+    "group": "Frisdranken"
   },
   {
     "id": "96",
@@ -1636,216 +2067,8 @@ const PRODUCTS = [
         "name": "Flesje",
         "cents": 370
       }
-    ]
-  },
-  {
-    "id": "53",
-    "name": "Koude schotel klein — natuur",
-    "description": "Sla, tomaat, ei, komkommer, worteltjes, augurk, mayonaise, aardappelsla & een groot broodje",
-    "category": "schotels",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Koude schotel",
-        "cents": 750
-      }
-    ]
-  },
-  {
-    "id": "54",
-    "name": "Koude schotel klein — met hesp",
-    "description": "Sla, tomaat, ei, komkommer, worteltjes, augurk, mayonaise, aardappelsla & een groot broodje",
-    "category": "schotels",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Koude schotel",
-        "cents": 850
-      }
-    ]
-  },
-  {
-    "id": "55",
-    "name": "Koude schotel klein — met americain",
-    "description": "Sla, tomaat, ei, komkommer, worteltjes, augurk, mayonaise, aardappelsla & een groot broodje",
-    "category": "schotels",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Koude schotel",
-        "cents": 950
-      }
-    ]
-  },
-  {
-    "id": "56",
-    "name": "Koude schotel klein — met kip",
-    "description": "Sla, tomaat, ei, komkommer, worteltjes, augurk, mayonaise, aardappelsla & een groot broodje",
-    "category": "schotels",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Koude schotel",
-        "cents": 950
-      }
-    ]
-  },
-  {
-    "id": "57",
-    "name": "Koude schotel klein — met tonijn",
-    "description": "Sla, tomaat, ei, komkommer, worteltjes, augurk, mayonaise, aardappelsla & een groot broodje. Met een blikje tonijn.",
-    "category": "schotels",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Koude schotel",
-        "cents": 1000
-      }
-    ]
-  },
-  {
-    "id": "58",
-    "name": "Koude schotel klein — met gerookte zalm",
-    "description": "Sla, tomaat, ei, komkommer, worteltjes, augurk, mayonaise, aardappelsla & een groot broodje",
-    "category": "schotels",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Koude schotel",
-        "cents": 1050
-      }
-    ]
-  },
-  {
-    "id": "59",
-    "name": "Koude schotel klein — met grijze garnaalsla",
-    "description": "Sla, tomaat, ei, komkommer, worteltjes, augurk, mayonaise, aardappelsla & een groot broodje",
-    "category": "schotels",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Koude schotel",
-        "cents": 1150
-      }
-    ]
-  },
-  {
-    "id": "60",
-    "name": "Gezonde schotel van de week",
-    "description": "Elke week een verse, voedzame verrassing",
-    "category": "schotels",
-    "featured": false,
-    "sideChoice": false,
-    "variants": [
-      {
-        "name": "Koude schotel",
-        "cents": null
-      }
-    ]
-  },
-  {
-    "id": "97",
-    "name": "Koude schotel van het huis — natuur",
-    "description": "Sla, tomaat, ei, komkommer, worteltjes, boontjes, rode kool, maïs, paprika & mayonaise. Naar keuze met een groot broodje of aardappelsla",
-    "category": "schotels",
-    "featured": false,
-    "sideChoice": true,
-    "variants": [
-      {
-        "name": "Koude schotel",
-        "cents": 750
-      }
-    ]
-  },
-  {
-    "id": "98",
-    "name": "Koude schotel van het huis — met hesp",
-    "description": "Sla, tomaat, ei, komkommer, worteltjes, boontjes, rode kool, maïs, paprika & mayonaise. Naar keuze met een groot broodje of aardappelsla",
-    "category": "schotels",
-    "featured": false,
-    "sideChoice": true,
-    "variants": [
-      {
-        "name": "Koude schotel",
-        "cents": 850
-      }
-    ]
-  },
-  {
-    "id": "99",
-    "name": "Koude schotel van het huis — met americain",
-    "description": "Sla, tomaat, ei, komkommer, worteltjes, boontjes, rode kool, maïs, paprika & mayonaise. Naar keuze met een groot broodje of aardappelsla",
-    "category": "schotels",
-    "featured": false,
-    "sideChoice": true,
-    "variants": [
-      {
-        "name": "Koude schotel",
-        "cents": 950
-      }
-    ]
-  },
-  {
-    "id": "100",
-    "name": "Koude schotel van het huis — met kip",
-    "description": "Sla, tomaat, ei, komkommer, worteltjes, boontjes, rode kool, maïs, paprika & mayonaise. Naar keuze met een groot broodje of aardappelsla",
-    "category": "schotels",
-    "featured": false,
-    "sideChoice": true,
-    "variants": [
-      {
-        "name": "Koude schotel",
-        "cents": 950
-      }
-    ]
-  },
-  {
-    "id": "101",
-    "name": "Koude schotel van het huis — met tonijn",
-    "description": "Sla, tomaat, ei, komkommer, worteltjes, boontjes, rode kool, maïs, paprika & mayonaise. Naar keuze met een groot broodje of aardappelsla. Met een blikje tonijn.",
-    "category": "schotels",
-    "featured": false,
-    "sideChoice": true,
-    "variants": [
-      {
-        "name": "Koude schotel",
-        "cents": 1000
-      }
-    ]
-  },
-  {
-    "id": "102",
-    "name": "Koude schotel van het huis — met gerookte zalm",
-    "description": "Sla, tomaat, ei, komkommer, worteltjes, boontjes, rode kool, maïs, paprika & mayonaise. Naar keuze met een groot broodje of aardappelsla",
-    "category": "schotels",
-    "featured": false,
-    "sideChoice": true,
-    "variants": [
-      {
-        "name": "Koude schotel",
-        "cents": 1050
-      }
-    ]
-  },
-  {
-    "id": "103",
-    "name": "Koude schotel van het huis — met grijze garnaalsla",
-    "description": "Sla, tomaat, ei, komkommer, worteltjes, boontjes, rode kool, maïs, paprika & mayonaise. Naar keuze met een groot broodje of aardappelsla",
-    "category": "schotels",
-    "featured": false,
-    "sideChoice": true,
-    "variants": [
-      {
-        "name": "Koude schotel",
-        "cents": 1150
-      }
-    ]
+    ],
+    "breadChoice": false,
+    "group": "Frisdranken"
   }
 ];
